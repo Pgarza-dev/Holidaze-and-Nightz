@@ -1,5 +1,7 @@
 import Container from "@/components/Container";
+import EditProfileForm from "@/components/forms/EditProfleForm";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
 import { cookies } from "next/headers";
 import { useCallback } from "react";
 
@@ -36,18 +38,26 @@ async function ProfilePage() {
 
   return (
     <div className="h-full w-full p-10">
-      <Container className="h-full w-full border-2 border-customBlack p-5">
-        <div className="p-4">
+      <Container className="flex h-full w-full flex-row border-2 border-customBlack p-5">
+        <div className="h-full w-full p-4">
           <Avatar className="h-20 w-20 md:h-1/4 md:w-1/4">
             <AvatarImage src={data.data.avatar.url} />
-            <AvatarFallback>PG</AvatarFallback>
+            <AvatarFallback>{data.data.name}</AvatarFallback>
           </Avatar>
           <h1>{data.data.name}</h1>
           <p>{data.data.email}</p>
           <p>{data.data.bio}</p>
           <p>{data.data.venueManager}</p>
+          <p>My bookings: {data.data.bookings}</p>
+          <p>My venues: {data.data.venues_count}</p>
+        </div>
+        <div>
+          <Button>Edit Profile</Button>
         </div>
       </Container>
+      <div>
+        <EditProfileForm />
+      </div>
     </div>
   );
 }

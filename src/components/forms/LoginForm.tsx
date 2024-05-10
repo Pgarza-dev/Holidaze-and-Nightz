@@ -72,7 +72,7 @@ export default function LoginForm() {
             className="border border-customWhite hover:bg-customWhite hover:text-customBlack"
             type="submit"
           >
-            Submit
+            Login
           </Button>
         </form>
       </div>
