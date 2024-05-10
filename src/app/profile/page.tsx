@@ -28,6 +28,8 @@ async function ProfilePage() {
         return {};
       }
       const data = await response.json();
+      console.log(data);
+      
       return data;
     } catch (error) {
       return { data: null, error };
@@ -48,8 +50,8 @@ async function ProfilePage() {
           <p>{data.data.email}</p>
           <p>{data.data.bio}</p>
           <p>{data.data.venueManager}</p>
-          <p>My bookings: {data.data.bookings}</p>
-          <p>My venues: {data.data.venues_count}</p>
+          <p>My venues: {data.data._count.venues}</p>
+          <p>My bookings: {data.data._count.bookings}</p>
         </div>
         <div>
           <Button>Edit Profile</Button>

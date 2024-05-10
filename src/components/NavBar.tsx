@@ -21,10 +21,10 @@ function NavBar() {
           <nav className="flex flex-row items-center justify-between">
             <div className="flex flex-col gap-4">
               <div className="flex flex-row items-center gap-4">
-                <Avatar>
+                {/* <Avatar>
                   <AvatarImage src="https://github.com/shadcn.png" />
                   <AvatarFallback>PG</AvatarFallback>
-                </Avatar>
+                </Avatar> */}
                 {/* <Link
                   id="loginButton"
                   href="/login"
@@ -32,7 +32,7 @@ function NavBar() {
                 >
                   Login
                 </Link> */}
-                <LoginButton />
+                {/* <LoginButton /> */}
                 {/* <div>
                   {localStorage.getItem("token") ? (
                     <LogoutButton />
