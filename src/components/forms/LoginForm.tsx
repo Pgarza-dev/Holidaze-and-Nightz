@@ -3,6 +3,7 @@ import { useState } from "react";
 import React from "react";
 import Container from "@/components/Container";
 import { Button } from "../ui/button";
+import Link from "next/link";
 
 export default function LoginForm() {
   const [email, setEmail] = useState("");
@@ -75,6 +76,14 @@ export default function LoginForm() {
             Login
           </Button>
         </form>
+        <div className="flex flex-col items-center justify-center gap-2 p-4">
+          <p>Don't have a profile?</p>
+          <Link href="/register">
+            <Button className="border border-customWhite hover:bg-customWhite hover:text-customBlack">
+              Register here
+            </Button>
+          </Link>
+        </div>
       </div>
     </Container>
   );
