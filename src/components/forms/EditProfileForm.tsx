@@ -5,34 +5,39 @@ import Container from "@/components/Container";
 import { Button } from "../ui/button";
 
 export default function EditProfileForm() {
+  const [avatar, setAvatar] = useState({ url: "", alt: "" });
+  const [banner, setBanner] = useState({ url: "", alt: "" });
   const [bio, setBio] = useState("");
-  const [avatar, setAvatar] = useState("");
-  const [banner, setBanner] = useState("");
-  const [venueManager, setVenueManager] = useState("");
+  const [venueManager, setVenueManager] = useState(false);
 
-  const handleAvatarChange = (event: {
-    target: { value: React.SetStateAction<string> };
-  }) => {
-    setAvatar(event.target.value);
+
+  const handleAvatarChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setAvatar((prevState) => ({
+      ...prevState,
+      url: event.target.value,
+      alt: event.target.value,
+    }));
   };
+  // const handleAvatarDescriptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   setAvatar((prevState) => ({
+  //     ...prevState,
+  //     alt: event.target.value,
+  //   }));
+  // }
 
-  const handleBannerChange = (event: {
-    target: { value: React.SetStateAction<string> };
-  }) => {
-    setBanner(event.target.value);
-  };
+  // const handleBannerChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   setBanner((prevState) => ({ ...prevState, url: event.target.value }));
+  // };
 
-  const handleBioChange = (event: {
-    target: { value: React.SetStateAction<string> };
-  }) => {
+  const handleBioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setBio(event.target.value);
   };
 
-  const handleVenueManagerChange = (event: {
-    target: { value: React.SetStateAction<string> };
-  }) => {
-    setVenueManager(event.target.value);
-  };
+  // const handleVenueManagerChange = (
+  //   event: React.ChangeEvent<HTMLInputElement>,
+  // ) => {
+  //   setVenueManager(event.target.checked);
+  // };
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -56,7 +61,7 @@ export default function EditProfileForm() {
           Edit Profile
         </h1>
       </div>
-      <div className=" rounded-xl bg-customBlack px-6 py-3 text-customWhite">
+      <div className=" rounded-xl bg-customBlack px-6 py-3 text-customBlack">
         <form onSubmit={handleSubmit} className="flex flex-col">
           <label htmlFor="bio">Bio</label>
           <input
@@ -72,28 +77,37 @@ export default function EditProfileForm() {
             className="mb-2 h-10 w-full rounded-md p-2"
             type="text"
             name="avatar"
-            value={avatar}
+            value={avatar.url}
             onChange={handleAvatarChange}
             placeholder="Enter your avatar"
           />
-          <label htmlFor="banner">Banner</label>
+          {/* <label htmlFor="avatar description">Avatar Description</label>
+          <input
+            className="mb-2 h-10 w-full rounded-md p-2"
+            type="text"
+            name="avatar"
+            value={avatar.alt}
+            onChange={handleAvatarDescriptionChange}
+            placeholder="Enter your avatar description"
+          /> */}
+          {/* <label htmlFor="banner">Banner</label>
           <input
             className="mb-2 h-10 w-full rounded-md p-2"
             type="text"
             name="banner"
-            value={banner}
+            value={banner.url} // Access the url property of the banner object
             onChange={handleBannerChange}
             placeholder="Enter your banner"
-          />
+          /> 
           <label htmlFor="venueManager">Venue Manager</label>
           <input
             className="mb-2 h-10 w-full rounded-md p-2"
             type="text"
             name="venueManager"
-            value={venueManager}
+            value={venueManager.toString()} // Convert boolean value to string
             onChange={handleVenueManagerChange}
             placeholder="Enter your venue manager"
-          />
+          />  */}
           <Button
             className="mt-4 border border-customWhite hover:bg-customWhite hover:text-customBlack"
             type="submit"

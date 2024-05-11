@@ -1,7 +1,7 @@
 'use client'
 import { z } from 'zod'
 import { useRouter } from 'next/navigation'
-import { API_BASE_URL, API_REGISTER } from '@/shared/api'
+import { API_BASE_URL, API_REGISTER } from '@/shared/ApiEndPoints'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { Button } from '@/components/ui/button'

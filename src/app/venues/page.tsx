@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import useFetch from "@/lib/hooks/data";
-import { API_VENUES } from "@/shared/api";
+import { API_VENUES } from "@/shared/ApiEndPoints";
 import Image from "next/image";
 import Link from "next/link";
 import Container from "@/components/Container";

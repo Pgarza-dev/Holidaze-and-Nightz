@@ -31,6 +31,7 @@ export async function PUT(req: NextRequest) {
           token: data.data.accessToken,
         }),
         httpOnly: true,
+        secure: true,
         path: "/",
         maxAge: 60 * 60 * 24 * 365 * 1000,
         expires: new Date(Date.now() + 60 * 60 * 24 * 365 * 1000),
