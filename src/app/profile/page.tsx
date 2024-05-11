@@ -1,8 +1,8 @@
 import Container from "@/components/Container";
-import EditProfileForm from "@/components/forms/EditProfleForm";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { cookies } from "next/headers";
+import Link from "next/link";
 import { useCallback } from "react";
 
 async function ProfilePage() {
@@ -29,7 +29,7 @@ async function ProfilePage() {
       }
       const data = await response.json();
       console.log(data);
-      
+
       return data;
     } catch (error) {
       return { data: null, error };
@@ -54,12 +54,16 @@ async function ProfilePage() {
           <p>My bookings: {data.data._count.bookings}</p>
         </div>
         <div>
-          <Button>Edit Profile</Button>
+          <Link href="/editProfile">
+            <Button className="hover:bg-customWhite hover:text-customBlack">
+              Edit Profile
+            </Button>
+          </Link>
         </div>
       </Container>
-      <div>
+      {/* <div>
         <EditProfileForm />
-      </div>
+      </div> */}
     </div>
   );
 }
