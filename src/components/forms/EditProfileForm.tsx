@@ -52,9 +52,6 @@ export default function EditProfileForm() {
       });
       const data = await response.json();
       console.log(data);
-      if (response.ok) {
-        window.location.href = "/profile";
-      }
     } catch (error) {
       console.log(error);
     }

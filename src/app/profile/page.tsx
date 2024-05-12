@@ -42,24 +42,42 @@ async function ProfilePage() {
     <div className="h-full w-full p-10">
       <Container className="flex h-full w-full flex-row border-2 border-customBlack p-5">
         <div className="h-full w-full p-4">
-          <Avatar className="h-20 w-20 md:h-1/4 md:w-1/4">
-            <AvatarImage src={data.data.avatar.url} />
-            <AvatarFallback>{data.data.name}</AvatarFallback>
-          </Avatar>
-          <h1>{data.data.name}</h1>
-          <p>{data.data.email}</p>
-          <p>{data.data.bio}</p>
-          <p>{data.data.venueManager}</p>
-          <p>My venues: {data.data._count.venues}</p>
-          <p>My bookings: {data.data._count.bookings}</p>
+          {data.data && user.userName === data.data.name ? (
+            <>
+              <Link href="/editProfile">
+                <Button className="hover:bg-customWhite hover:text-customBlack">
+                  Edit Profile
+                </Button>
+              </Link>
+              <Avatar className="h-20 w-20 md:h-1/4 md:w-1/4">
+                <AvatarImage src={data.data.avatar.url} />
+                <AvatarFallback>{data.data.name}</AvatarFallback>
+              </Avatar>
+              <h1>{data.data.name}</h1>
+              <p>{data.data.email}</p>
+              <p>{data.data.bio}</p>
+              <p>{data.data.venueManager}</p>
+              <p>My venues: {data.data._count.venues}</p>
+              <p>My bookings: {data.data._count.bookings}</p>
+            </>
+          ) : (
+            <div>
+              <h1>Oops! Did you forget to log in?</h1>
+              <Link href="/login">
+                <Button className="hover:bg-customWhite hover:text-customBlack">
+                  Login
+                </Button>
+              </Link>
+            </div>
+          )}
         </div>
-        <div>
+        {/* <div>
           <Link href="/editProfile">
             <Button className="hover:bg-customWhite hover:text-customBlack">
               Edit Profile
             </Button>
           </Link>
-        </div>
+        </div> */}
       </Container>
       {/* <div>
         <EditProfileForm />

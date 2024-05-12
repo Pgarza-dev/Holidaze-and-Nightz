@@ -36,6 +36,9 @@ export async function PUT(req: NextRequest) {
         maxAge: 60 * 60 * 24 * 365 * 1000,
         expires: new Date(Date.now() + 60 * 60 * 24 * 365 * 1000),
       });
+      // if (response.ok) {
+      //   window.location.href = "/profile";
+      // }
       return new Response(JSON.stringify({ data }), {
         status: 200,
         headers: {
