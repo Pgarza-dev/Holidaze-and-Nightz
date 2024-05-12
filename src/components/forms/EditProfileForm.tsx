@@ -3,13 +3,13 @@ import { useState } from "react";
 import React from "react";
 import Container from "@/components/Container";
 import { Button } from "../ui/button";
+import Link from "next/link";
 
 export default function EditProfileForm() {
   const [avatar, setAvatar] = useState({ url: "", alt: "" });
   const [banner, setBanner] = useState({ url: "", alt: "" });
   const [bio, setBio] = useState("");
   const [venueManager, setVenueManager] = useState(false);
-
 
   const handleAvatarChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setAvatar((prevState) => ({
@@ -29,7 +29,9 @@ export default function EditProfileForm() {
   //   setBanner((prevState) => ({ ...prevState, url: event.target.value }));
   // };
 
-  const handleBioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleBioChange = (event: {
+    target: { value: React.SetStateAction<string> };
+  }) => {
     setBio(event.target.value);
   };
 
@@ -50,12 +52,18 @@ export default function EditProfileForm() {
       });
       const data = await response.json();
       console.log(data);
+      if (response.ok) {
+        window.location.href = "/profile";
+      }
     } catch (error) {
       console.log(error);
     }
   }
   return (
     <Container className=" max-w-xl font-libre">
+      <Link href="/profile" className="text-customBlack">
+        Back to Profile
+      </Link>
       <div className="p-4 text-center">
         <h1 className="text-xl font-bold text-customBlack  md:text-2xl lg:text-4xl xl:text-5xl">
           Edit Profile
@@ -73,14 +81,14 @@ export default function EditProfileForm() {
             placeholder="Enter your bio"
           />
           <label htmlFor="avatar">Avatar</label>
-          <input
+          {/* <input
             className="mb-2 h-10 w-full rounded-md p-2"
             type="text"
             name="avatar"
             value={avatar.url}
             onChange={handleAvatarChange}
             placeholder="Enter your avatar"
-          />
+          /> */}
           {/* <label htmlFor="avatar description">Avatar Description</label>
           <input
             className="mb-2 h-10 w-full rounded-md p-2"
