@@ -33,6 +33,7 @@ export default function LoginForm() {
       const data = await response.json();
       console.log(data);
       if (response.ok) {
+        console.log(data);
         window.location.href = "/profile";
       }
     } catch (error) {
@@ -69,6 +70,7 @@ export default function LoginForm() {
             onChange={handlePasswordChange}
             placeholder="Enter your password"
           />
+
           <Button
             className="border border-customWhite hover:bg-customWhite hover:text-customBlack"
             type="submit"

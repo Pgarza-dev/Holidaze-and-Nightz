@@ -3,13 +3,13 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { ThemeToggle } from "./ThemeToggle";
 import { IoIosSearch } from "react-icons/io";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import Container from "@/components/Container";
-import LoginButton from "@/components/LoginButton";
-import LogoutButton from "@/components/LoginButton";
+import LogoutButton from "@/components/LogoutButton";
+import { isUserLoggedIn } from "@/utils/auth";
 
 function NavBar() {
   const [isClicked, setisClicked] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(true);
   const toggleNavbar = () => {
     setisClicked(!isClicked);
   };
@@ -20,28 +20,6 @@ function NavBar() {
         <header>
           <nav className="flex flex-row items-center justify-between">
             <div className="flex flex-col gap-4">
-              <div className="flex flex-row items-center gap-4">
-                {/* <Avatar>
-                  <AvatarImage src="https://github.com/shadcn.png" />
-                  <AvatarFallback>PG</AvatarFallback>
-                </Avatar> */}
-                {/* <Link
-                  id="loginButton"
-                  href="/login"
-                  className="text-base md:text-xl text-background hover:text-secondary dark:text-darkText"
-                >
-                  Login
-                </Link> */}
-                {/* <LoginButton /> */}
-                {/* <div>
-                  {localStorage.getItem("token") ? (
-                    <LogoutButton />
-                  ) : (
-                    <LoginButton />
-                  )}
-                </div> */}
-              </div>
-
               <button
                 className="text-base text-background hover:text-secondary dark:text-darkText md:text-3xl"
                 onClick={toggleNavbar}

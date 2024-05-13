@@ -18,16 +18,18 @@ export default function EditProfileForm() {
       alt: event.target.value,
     }));
   };
-  // const handleAvatarDescriptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   setAvatar((prevState) => ({
-  //     ...prevState,
-  //     alt: event.target.value,
-  //   }));
-  // }
+  const handleAvatarDescriptionChange = (
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) => {
+    setAvatar((prevState) => ({
+      ...prevState,
+      alt: event.target.value,
+    }));
+  };
 
-  // const handleBannerChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   setBanner((prevState) => ({ ...prevState, url: event.target.value }));
-  // };
+  const handleBannerChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setBanner((prevState) => ({ ...prevState, url: event.target.value }));
+  };
 
   const handleBioChange = (event: {
     target: { value: React.SetStateAction<string> };
@@ -35,16 +37,17 @@ export default function EditProfileForm() {
     setBio(event.target.value);
   };
 
-  // const handleVenueManagerChange = (
-  //   event: React.ChangeEvent<HTMLInputElement>,
-  // ) => {
-  //   setVenueManager(event.target.checked);
-  // };
+  const handleVenueManagerChange = (
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) => {
+    setVenueManager(event.target.checked);
+  };
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     try {
       const formData = new FormData(e.currentTarget as HTMLFormElement);
+console.log(formData);
 
       const response = await fetch("/api/editProfile", {
         method: "PUT",
@@ -77,16 +80,16 @@ export default function EditProfileForm() {
             onChange={handleBioChange}
             placeholder="Enter your bio"
           />
-          <label htmlFor="avatar">Avatar</label>
-          {/* <input
+          {/* <label htmlFor="avatar">Avatar</label>
+          <input
             className="mb-2 h-10 w-full rounded-md p-2"
             type="text"
             name="avatar"
             value={avatar.url}
             onChange={handleAvatarChange}
             placeholder="Enter your avatar"
-          /> */}
-          {/* <label htmlFor="avatar description">Avatar Description</label>
+          />
+          <label htmlFor="avatar description">Avatar Description</label>
           <input
             className="mb-2 h-10 w-full rounded-md p-2"
             type="text"
@@ -94,25 +97,25 @@ export default function EditProfileForm() {
             value={avatar.alt}
             onChange={handleAvatarDescriptionChange}
             placeholder="Enter your avatar description"
-          /> */}
-          {/* <label htmlFor="banner">Banner</label>
+          />
+          <label htmlFor="banner">Banner</label>
           <input
             className="mb-2 h-10 w-full rounded-md p-2"
             type="text"
             name="banner"
-            value={banner.url} // Access the url property of the banner object
+            value={banner.url} 
             onChange={handleBannerChange}
             placeholder="Enter your banner"
-          /> 
-          <label htmlFor="venueManager">Venue Manager</label>
-          <input
+          />
+          <label htmlFor="venueManager">Venue Manager</label> */}
+          {/* <input
             className="mb-2 h-10 w-full rounded-md p-2"
             type="text"
             name="venueManager"
-            value={venueManager.toString()} // Convert boolean value to string
+            value={venueManager.toString()} 
             onChange={handleVenueManagerChange}
             placeholder="Enter your venue manager"
-          />  */}
+          /> */}
           <Button
             className="mt-4 border border-customWhite hover:bg-customWhite hover:text-customBlack"
             type="submit"

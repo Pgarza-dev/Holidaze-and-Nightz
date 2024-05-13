@@ -1,4 +1,5 @@
 import Container from "@/components/Container";
+import LogoutButton from "@/components/LogoutButton";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { cookies } from "next/headers";
@@ -20,12 +21,14 @@ async function ProfilePage() {
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${user.token}`,
-            "X-Noroff-API-Key": "47f644a2-ca09-4d17-898f-4d82cb9e65f2",
+            "X-Noroff-API-Key": process.env.NOROFF_API_KEY || "",
           },
         },
       );
       if (!response.ok) {
-        return {};
+        throw new Error("Network response was not ok");
+      } else {
+        console.log(response);
       }
       const data = await response.json();
       console.log(data);
@@ -40,6 +43,9 @@ async function ProfilePage() {
 
   return (
     <div className="h-full w-full p-10">
+      <div className="flex flex-row items-center gap-4">
+        <LogoutButton />
+      </div>
       <Container className="flex h-full w-full flex-row border-2 border-customBlack p-5">
         <div className="h-full w-full p-4">
           {data.data && user.userName === data.data.name ? (

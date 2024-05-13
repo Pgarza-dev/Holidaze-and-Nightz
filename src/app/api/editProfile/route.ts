@@ -1,5 +1,6 @@
 import { NextRequest } from "next/server";
 import { cookies } from "next/headers";
+import { redirect } from 'next/navigation'
 
 export async function PUT(req: NextRequest) {
   try {
@@ -8,15 +9,17 @@ export async function PUT(req: NextRequest) {
     const cookieUser = cookies();
     const userObject = cookieUser.get("user");
     const user = JSON.parse(userObject?.value ?? "");
+    const api_key = process.env.NOROFF_API_KEY;
+    const headers = new Headers({
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${user.token}`,
+      "X-Noroff-API-Key": api_key || "",
+    });
     const response = await fetch(
       `https://v2.api.noroff.dev/holidaze/profiles/${user.userName}`,
       {
         method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${user.token}`,
-          "X-Noroff-API-Key": "47f644a2-ca09-4d17-898f-4d82cb9e65f2",
-        },
+        headers,
         body: JSON.stringify(form),
       },
     );
