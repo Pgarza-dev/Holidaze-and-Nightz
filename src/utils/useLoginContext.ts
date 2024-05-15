@@ -1,9 +1,9 @@
-import React, { useContext } from 'react'
-import { LoginContext } from './loginContext'
+// import React, { useContext } from 'react'
+// import { LoginContext } from './loginContext'
 
-function useLoginContext() {
+// function useLoginContext() {
 
-   const context = useContext(LoginContext)
-   return context!;
-    }
-export default useLoginContext
+//    const context = useContext(LoginContext)
+//    return context!;
+//     }
+// export default useLoginContext

@@ -6,8 +6,8 @@ import NavBar from "@/components/NavBar";
 import "slick-carousel/slick/slick.css";
 import Footer from "@/components/Footer";
 import { Toaster } from "@/components/ui/toaster";
-import { Session } from "inspector";
-import LoginProvider from "@/components/LoginProvider";
+// import { Session } from "inspector";
+// import LoginProvider from "@/components/LoginProvider";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -40,12 +40,12 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <LoginProvider>
+          {/* <LoginProvider> */}
             <NavBar />
             <main className="min-h-screen">{children}</main>
             <Toaster />
             <Footer />
-          </LoginProvider>
+          {/* </LoginProvider> */}
         </ThemeProvider>
       </body>
     </html>

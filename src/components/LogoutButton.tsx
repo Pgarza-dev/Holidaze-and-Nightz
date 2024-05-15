@@ -1,44 +1,32 @@
+// components/LogoutButton.tsx
+"use client";
+import { cookies } from "next/headers";
 import Link from "next/link";
 import React from "react";
-import { useEffect } from "react";
-import { useState } from "react";
-import LoginButton from "@/components/LoginButton";
+import { Button } from "./ui/button";
 
-function LogoutButton() {
-  const [isLoggedOut, setIsLoggedOut] = useState(false);
-
-  useEffect(() => {
-    if (localStorage.getItem('token')) {
-      setIsLoggedOut(true)
+export default function LogoutButton() {
+  const handleLogout = async () => {
+    try {
+      const response = await fetch("/api/logout", {
+        method: "POST",
+      });
+      if (response.ok) {
+        window.location.href = "/"; // Redirect to the homepage or login page after logging out
+      } else {
+        console.error("Failed to log out");
+      }
+    } catch (error) {
+      console.error("An error occurred while logging out", error);
     }
-  }, [])
+  };
 
-  function handleLogout() {
-    localStorage.removeItem("token");
-    setIsLoggedOut(true);
-    console.log("Logged out");
-    
-  }
-
-  if (isLoggedOut === true) {
-    return (
-      <div>
-        <LoginButton />
-      </div>
-    );
-  }
   return (
-    <div>
-      <Link href="/">
-        <button
-          onClick={handleLogout}
-          className="text-base text-background hover:text-secondary dark:text-darkText md:text-xl"
-        >
-          Logout
-        </button>
-      </Link>
-    </div>
+    <Button
+      onClick={handleLogout}
+      className=" z-50 hover:bg-customWhite hover:text-customBlack"
+    >
+      Logout
+    </Button>
   );
 }
-
-export default LogoutButton;
