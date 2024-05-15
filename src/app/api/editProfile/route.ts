@@ -1,11 +1,29 @@
 import { NextRequest } from "next/server";
 import { cookies } from "next/headers";
-import { redirect } from 'next/navigation'
+import { removeUndefinedAndEmpty } from "@/utils/removeUndefinedAndEmpty";
+import { revalidatePath } from "next/cache";
 
 export async function PUT(req: NextRequest) {
   try {
     const formData = await req.formData();
     const form = Object.fromEntries(formData.entries());
+    const transformedForm = {
+      bio: form.bio || undefined,
+      avatar: {
+        url: form.avatarUrl || undefined,
+        alt: form.avatarAlt || undefined,
+      },
+      banner: {
+        url: form.bannerUrl || undefined,
+        alt: form.bannerAlt || undefined,
+      },
+      venueManager: form.venueManager === "true" ? true : false || undefined,
+    };
+
+    const saveResult = removeUndefinedAndEmpty(transformedForm);
+    console.log(saveResult);
+    console.log(transformedForm);
+    console.log(form);
     const cookieUser = cookies();
     const userObject = cookieUser.get("user");
     const user = JSON.parse(userObject?.value ?? "");
@@ -20,28 +38,17 @@ export async function PUT(req: NextRequest) {
       {
         method: "PUT",
         headers,
-        body: JSON.stringify(form),
+        body: JSON.stringify(saveResult),
       },
     );
     const data = await response.json();
     console.log(data);
+
     if (response.ok) {
       console.log(data);
-      cookies().set({
-        name: "user",
-        value: JSON.stringify({
-          userName: data.data.name,
-          token: data.data.accessToken,
-        }),
-        httpOnly: true,
-        secure: true,
-        path: "/",
-        maxAge: 60 * 60 * 24 * 365 * 1000,
-        expires: new Date(Date.now() + 60 * 60 * 24 * 365 * 1000),
-      });
-      // if (response.ok) {
-      //   window.location.href = "/profile";
-      // }
+
+      revalidatePath("/profile");
+
       return new Response(JSON.stringify({ data }), {
         status: 200,
         headers: {
@@ -50,13 +57,13 @@ export async function PUT(req: NextRequest) {
       });
     } else {
       return new Response(JSON.stringify(response.status), {
-        status: 401,
+        status: response.status,
         headers: {
           "Content-Type": "application/json",
         },
       });
     }
   } catch (error) {
-    return { data: null, error };
+    return Response.json("error", { status: 500 });
   }
 }

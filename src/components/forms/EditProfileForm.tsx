@@ -1,59 +1,24 @@
 "use client";
-import { useState } from "react";
 import React from "react";
 import Container from "@/components/Container";
 import { Button } from "../ui/button";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function EditProfileForm() {
-  const [avatar, setAvatar] = useState({ url: "", alt: "" });
-  const [banner, setBanner] = useState({ url: "", alt: "" });
-  const [bio, setBio] = useState("");
-  const [venueManager, setVenueManager] = useState(false);
-
-  const handleAvatarChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setAvatar((prevState) => ({
-      ...prevState,
-      url: event.target.value,
-      alt: event.target.value,
-    }));
-  };
-  const handleAvatarDescriptionChange = (
-    event: React.ChangeEvent<HTMLInputElement>,
-  ) => {
-    setAvatar((prevState) => ({
-      ...prevState,
-      alt: event.target.value,
-    }));
-  };
-
-  const handleBannerChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setBanner((prevState) => ({ ...prevState, url: event.target.value }));
-  };
-
-  const handleBioChange = (event: {
-    target: { value: React.SetStateAction<string> };
-  }) => {
-    setBio(event.target.value);
-  };
-
-  const handleVenueManagerChange = (
-    event: React.ChangeEvent<HTMLInputElement>,
-  ) => {
-    setVenueManager(event.target.checked);
-  };
-
+  const router = useRouter();
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     try {
       const formData = new FormData(e.currentTarget as HTMLFormElement);
-console.log(formData);
-
+      console.log(formData);
       const response = await fetch("/api/editProfile", {
         method: "PUT",
         body: formData,
       });
       const data = await response.json();
+      
+      router.push("/profile");
       console.log(data);
     } catch (error) {
       console.log(error);
@@ -76,46 +41,52 @@ console.log(formData);
             className="mb-2 h-10 w-full rounded-md p-2"
             type="text"
             name="bio"
-            value={bio}
-            onChange={handleBioChange}
             placeholder="Enter your bio"
           />
-          {/* <label htmlFor="avatar">Avatar</label>
+          <label htmlFor="avatar">Avatar</label>
           <input
             className="mb-2 h-10 w-full rounded-md p-2"
-            type="text"
-            name="avatar"
-            value={avatar.url}
-            onChange={handleAvatarChange}
+            type="url"
+            name="avatarUrl"
             placeholder="Enter your avatar"
           />
           <label htmlFor="avatar description">Avatar Description</label>
           <input
             className="mb-2 h-10 w-full rounded-md p-2"
             type="text"
-            name="avatar"
-            value={avatar.alt}
-            onChange={handleAvatarDescriptionChange}
+            name="avatarAlt"
             placeholder="Enter your avatar description"
           />
           <label htmlFor="banner">Banner</label>
           <input
             className="mb-2 h-10 w-full rounded-md p-2"
             type="text"
-            name="banner"
-            value={banner.url} 
-            onChange={handleBannerChange}
+            name="bannerUrl"
             placeholder="Enter your banner"
           />
-          <label htmlFor="venueManager">Venue Manager</label> */}
-          {/* <input
+          <label htmlFor="avatar description">Banner Description</label>
+          <input
             className="mb-2 h-10 w-full rounded-md p-2"
             type="text"
+            name="bannerAlt"
+            placeholder="Enter your avatar description"
+          />
+          <label htmlFor="venueManager">Venue Manager</label>
+          <input
+            className="mb-2 h-10 w-full rounded-md p-2"
+            type="radio"
             name="venueManager"
-            value={venueManager.toString()} 
-            onChange={handleVenueManagerChange}
+            value="false"
             placeholder="Enter your venue manager"
-          /> */}
+          />
+          <label htmlFor="venueManager">Not a Venue Manager</label>
+          <input
+            className="mb-2 h-10 w-full rounded-md p-2"
+            type="radio"
+            name="venueManager"
+            value="true"
+            placeholder="Enter your venue manager"
+          />
           <Button
             className="mt-4 border border-customWhite hover:bg-customWhite hover:text-customBlack"
             type="submit"

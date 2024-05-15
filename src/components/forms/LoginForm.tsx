@@ -4,8 +4,11 @@ import React from "react";
 import Container from "@/components/Container";
 import { Button } from "../ui/button";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { formSchema } from "@/app/forms/loginFormSchema";
 
 export default function LoginForm() {
+  const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -23,9 +26,12 @@ export default function LoginForm() {
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+  
+    
     try {
       const formData = new FormData(e.currentTarget as HTMLFormElement);
-
+      const formObject = Object.fromEntries(formData);
+      const validated = formSchema.parse(formObject);
       const response = await fetch("/api/login", {
         method: "POST",
         body: formData,
@@ -34,7 +40,7 @@ export default function LoginForm() {
       console.log(data);
       if (response.ok) {
         console.log(data);
-        window.location.href = "/profile";
+        router.push("/profile");
       }
     } catch (error) {
       console.log(error);
@@ -79,7 +85,7 @@ export default function LoginForm() {
           </Button>
         </form>
         <div className="flex flex-col items-center justify-center gap-2 p-4">
-          <p>Don't have a profile?</p>
+          <p>Don&apos;t have a profile?</p>
           <Link href="/register">
             <Button className="border border-customWhite hover:bg-customWhite hover:text-customBlack">
               Register here

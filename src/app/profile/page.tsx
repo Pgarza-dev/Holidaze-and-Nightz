@@ -12,7 +12,7 @@ async function ProfilePage() {
 
   const user = JSON.parse(userObject?.value ?? "");
 
-  const getData = useCallback(async () => {
+  const getData = async () => {
     try {
       const response = await fetch(
         `https://v2.api.noroff.dev/holidaze/profiles/${user.userName}`,
@@ -23,6 +23,7 @@ async function ProfilePage() {
             Authorization: `Bearer ${user.token}`,
             "X-Noroff-API-Key": process.env.NOROFF_API_KEY || "",
           },
+          cache: "no-store",
         },
       );
       if (!response.ok) {
@@ -37,7 +38,7 @@ async function ProfilePage() {
     } catch (error) {
       return { data: null, error };
     }
-  }, [user]);
+  };
 
   const data = await getData();
 
@@ -77,17 +78,7 @@ async function ProfilePage() {
             </div>
           )}
         </div>
-        {/* <div>
-          <Link href="/editProfile">
-            <Button className="hover:bg-customWhite hover:text-customBlack">
-              Edit Profile
-            </Button>
-          </Link>
-        </div> */}
       </Container>
-      {/* <div>
-        <EditProfileForm />
-      </div> */}
     </div>
   );
 }

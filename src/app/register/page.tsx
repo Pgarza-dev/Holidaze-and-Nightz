@@ -20,7 +20,6 @@ import { Input } from '@/components/ui/input'
 import Container from '@/components/Container'
 import { registerSchema } from '@/app/forms/registerFormSchema'
 import Link from 'next/link'
-import { onSubmitAction } from '../forms/formSubmit'
 import { Checkbox } from '@/components/ui/checkbox'
 
 function Register() {
@@ -115,7 +114,6 @@ function Register() {
       <div className="bg-customBlack text-customWhite rounded-xl px-6 py-3">
         <Form {...form}>
           <form
-            action={onSubmitAction}
             onSubmit={form.handleSubmit(onSubmit)}
             className="space-y-8"
           >
