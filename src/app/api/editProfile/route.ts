@@ -17,7 +17,7 @@ export async function PUT(req: NextRequest) {
         url: form.bannerUrl || undefined,
         alt: form.bannerAlt || undefined,
       },
-      venueManager: form.venueManager === "true" ? true : false || undefined,
+      venueManager: form.venueManager === "false" ? false : true || undefined,
     };
 
     const saveResult = removeUndefinedAndEmpty(transformedForm);

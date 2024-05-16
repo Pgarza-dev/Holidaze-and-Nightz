@@ -63,7 +63,8 @@ async function ProfilePage() {
               <h1>{data.data.name}</h1>
               <p>{data.data.email}</p>
               <p>{data.data.bio}</p>
-              <p>{data.data.venueManager}</p>
+
+              <p>Venue Manager: {data.data.venueManager ? "Yes" : "No"}</p>
               <p>My venues: {data.data._count.venues}</p>
               <p>My bookings: {data.data._count.bookings}</p>
             </>
