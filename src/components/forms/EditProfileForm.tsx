@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 
 export default function EditProfileForm() {
   const router = useRouter();
+
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     try {
@@ -17,7 +18,7 @@ export default function EditProfileForm() {
         body: formData,
       });
       const data = await response.json();
-      
+
       router.push("/profile");
       console.log(data);
     } catch (error) {
@@ -71,22 +72,29 @@ export default function EditProfileForm() {
             name="bannerAlt"
             placeholder="Enter your avatar description"
           />
-          <label htmlFor="venueManager">Venue Manager</label>
-          <input
-            className="mb-2 h-10 w-full rounded-md p-2"
-            type="radio"
-            name="venueManager"
-            value="false"
-            placeholder="Enter your venue manager"
-          />
-          <label htmlFor="venueManager">Not a Venue Manager</label>
-          <input
-            className="mb-2 h-10 w-full rounded-md p-2"
-            type="radio"
-            name="venueManager"
-            value="true"
-            placeholder="Enter your venue manager"
-          />
+
+          <div className="flex flex-row items-center gap-4 py-8 text-center text-xl">
+            <h3 className="uppercase text-customWhite">VENUE MANAGER?</h3>
+            <label htmlFor="venueManager" className="text-customWhite">
+              No
+            </label>
+            <input
+              className="h-4 w-4"
+              type="radio"
+              name="venueManager"
+              value="false"
+            />
+            <label htmlFor="venueManager" className="text-customWhite">
+              Yes
+            </label>
+            <input
+              className="h-4 w-4 "
+              type="radio"
+              name="venueManager"
+              value="true"
+            />
+          </div>
+
           <Button
             className="mt-4 border border-customWhite hover:bg-customWhite hover:text-customBlack"
             type="submit"
