@@ -31,9 +31,8 @@ type VenueProps = {
 type Media = { url: string; alt: string };
 
 export default function VenueDetails({ params }: VenueProps) {
-  const { data, isLoading, isError } = useFetch(
-    API_VENUES + `/${params.venuesId}`,
-  );
+  const venueId = params.venuesId as string;
+  const { data, isLoading, isError } = useFetch(API_VENUES + `/${venueId}`);
   console.log(data);
 
   if (isLoading) return <span className="loader"></span>;
@@ -78,7 +77,7 @@ export default function VenueDetails({ params }: VenueProps) {
                 {venue?.description}
               </p>{" "}
               <Button className="border-2 bg-customBlack text-2xl text-customWhite duration-300 hover:ring-2 hover:ring-customBlack hover:dark:bg-customWhite hover:dark:text-customBlack">
-                <Link href="/booking">Book</Link>
+                <Link href={`/venues/${venueId}/bookings`}>Book</Link>
               </Button>
             </div>
           </div>
