@@ -23,6 +23,7 @@ import Link from 'next/link'
 import { Checkbox } from '@/components/ui/checkbox'
 
 function Register() {
+
   const router = useRouter()
   const { toast } = useToast()
   const form = useForm<z.infer<typeof registerSchema>>({
