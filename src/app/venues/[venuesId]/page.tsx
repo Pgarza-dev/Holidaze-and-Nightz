@@ -68,12 +68,12 @@ export default function VenueDetails({ params }: VenueProps) {
           </svg>
         </div>
         <section className="mx-auto flex flex-col-reverse items-center justify-center gap-2 lg:flex-row">
-          <div className="relative flex w-full flex-col items-center gap-3 border-8 border-customBlack bg-background p-4 font-libre text-base text-customBlack dark:text-darkText lg:h-64 lg:w-96">
+          <div className=" relative flex w-full flex-col items-center gap-3 border-8 border-customBlack bg-background p-4 font-libre text-base text-customBlack dark:text-darkText lg:h-96 lg:w-96">
             <div className="flex h-full w-full flex-col items-center justify-center gap-2 bg-background lg:w-[25rem] lg:border-2 lg:border-background">
               <h2 className="font-bold md:p-6 md:text-lg lg:p-7 lg:text-xl xl:p-10 xl:text-4xl">
                 {venue?.location?.city}, {venue?.location?.country}
               </h2>
-              <p className="text-wrap px-8 pb-6 text-base xl:text-lg">
+              <p className=" overflow-y-scroll overscroll-contain px-8 pb-6 text-base xl:text-lg">
                 {venue?.description}
               </p>{" "}
               <Button className="border-2 bg-customBlack text-2xl text-customWhite duration-300 hover:ring-2 hover:ring-customBlack hover:dark:bg-customWhite hover:dark:text-customBlack">
