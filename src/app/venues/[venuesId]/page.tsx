@@ -112,9 +112,9 @@ export default function VenueDetails({ params }: VenueProps) {
                           <p className="">{venue?.location.city},</p>
                           <p>{venue?.location.country}</p>
                         </div>
-                        <span className="cursor-pointer underline-offset-8 hover:underline">
+                        {/* <span className="cursor-pointer underline-offset-8 hover:underline">
                           More →
-                        </span>
+                        </span> */}
                       </div>
                       <span className="">
                         {new Date(venue?.created).toISOString().split("T")[0]}
