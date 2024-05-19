@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const bookingSchema = z.object({
+export const bookingFormSchema = z.object({
   adults: z.number().int().min(1, {
     message: "Please select at least 1 adult.",
   }),

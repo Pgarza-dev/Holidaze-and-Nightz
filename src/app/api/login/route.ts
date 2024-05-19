@@ -16,11 +16,17 @@ export async function POST(req: NextRequest) {
     if (response.ok) {
       console.log(data);
       cookies().set({
-        name: "user",
-        value: JSON.stringify({
-          userName: data.data.name,
-          token: data.data.accessToken,
-        }),
+        name: "accessToken",
+        value: data.data.accessToken,
+        httpOnly: true,
+        secure: true,
+        path: "/",
+        maxAge: 60 * 60 * 24 * 365 * 1000,
+        expires: new Date(Date.now() + 60 * 60 * 24 * 365 * 1000),
+      });
+      cookies().set({
+        name: "username",
+        value: data.data.name,
         httpOnly: true,
         secure: true,
         path: "/",
