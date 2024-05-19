@@ -27,7 +27,7 @@ export async function PUT(req: NextRequest) {
     const cookieUser = cookies();
     const userObject = cookieUser.get("user");
     const user = JSON.parse(userObject?.value ?? "");
-    const api_key = process.env.NOROFF_API_KEY;
+    const api_key = process.env.NEXT_PUBLIC_NOROFF_API_KEY;
     const headers = new Headers({
       "Content-Type": "application/json",
       Authorization: `Bearer ${user.token}`,

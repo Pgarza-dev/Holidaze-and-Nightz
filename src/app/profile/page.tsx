@@ -4,24 +4,20 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { cookies } from "next/headers";
 import Link from "next/link";
-import { useCallback } from "react";
 
 async function ProfilePage() {
-  const cookieUser = cookies();
-  const userObject = cookieUser.get("user");
-
-  const user = JSON.parse(userObject?.value ?? "");
-
+  const username = cookies().get("username")?.value;
+  const accessToken = cookies().get("accessToken")?.value;
   const getData = async () => {
     try {
       const response = await fetch(
-        `https://v2.api.noroff.dev/holidaze/profiles/${user.userName}`,
+        `https://v2.api.noroff.dev/holidaze/profiles/${username}`,
         {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${user.token}`,
-            "X-Noroff-API-Key": process.env.NOROFF_API_KEY || "",
+            Authorization: `Bearer ${accessToken}`,
+            "X-Noroff-API-Key": process.env.NEXT_PUBLIC_NOROFF_API_KEY || "",
           },
           cache: "no-store",
         },
@@ -41,7 +37,7 @@ async function ProfilePage() {
   };
 
   const data = await getData();
-
+  console.log(data);
   return (
     <div className="h-full w-full p-10">
       <div className="flex flex-row items-center gap-4">
@@ -49,7 +45,7 @@ async function ProfilePage() {
       </div>
       <Container className="flex h-full w-full flex-row border-2 border-customBlack p-5">
         <div className="h-full w-full p-4">
-          {data.data && user.userName === data.data.name ? (
+          {data.data && username === data.data.name ? (
             <>
               <Link href="/editProfile">
                 <Button className="hover:bg-customWhite hover:text-customBlack">
