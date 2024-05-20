@@ -24,17 +24,16 @@ export async function PUT(req: NextRequest) {
     console.log(saveResult);
     console.log(transformedForm);
     console.log(form);
-    const cookieUser = cookies();
-    const userObject = cookieUser.get("user");
-    const user = JSON.parse(userObject?.value ?? "");
+    const username = cookies().get("username")?.value;
+    const accessToken = cookies().get("accessToken")?.value;
     const api_key = process.env.NEXT_PUBLIC_NOROFF_API_KEY;
     const headers = new Headers({
       "Content-Type": "application/json",
-      Authorization: `Bearer ${user.token}`,
+      Authorization: `Bearer ${accessToken}`,
       "X-Noroff-API-Key": api_key || "",
     });
     const response = await fetch(
-      `https://v2.api.noroff.dev/holidaze/profiles/${user.userName}`,
+      `https://v2.api.noroff.dev/holidaze/profiles/${username}`,
       {
         method: "PUT",
         headers,

@@ -73,7 +73,7 @@ export default function EditProfileForm() {
             placeholder="Enter your avatar description"
           />
 
-          <div className="flex flex-row items-center gap-4 py-8 text-center text-xl">
+          {/* <div className="flex flex-row items-center gap-4 py-8 text-center text-xl">
             <h3 className="uppercase text-customWhite">VENUE MANAGER?</h3>
             <label htmlFor="venueManager" className="text-customWhite">
               No
@@ -93,7 +93,7 @@ export default function EditProfileForm() {
               name="venueManager"
               value="true"
             />
-          </div>
+          </div> */}
 
           <Button
             className="mt-4 border border-customWhite hover:bg-customWhite hover:text-customBlack"

@@ -52,6 +52,7 @@ function Register() {
           title: 'Account Created',
           description: 'You have successfully created an account',
           duration: 3000,
+          variant: 'default',
           action: (
             <ToastAction altText="Register successful">Close</ToastAction>
           ),
@@ -62,6 +63,7 @@ function Register() {
           title: 'Oops something went wrong!',
           description: 'Please try again',
           duration: 3000,
+          variant: 'destructive',
           action: (
             <ToastAction altText="Register unsuccessful">Close</ToastAction>
           ),
