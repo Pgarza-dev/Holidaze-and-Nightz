@@ -24,6 +24,8 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Venue } from "@/shared/types/venue";
+import { ToastAction } from "@/components/ui/toast";
+import { useToast } from "@/components/ui/use-toast";
 
 interface Booking {
   id: string;
@@ -41,6 +43,7 @@ export default function BookingForm({
   venuesId: string;
   accessToken: string;
 }) {
+  const { toast } = useToast();
   const { data, isLoading, isError } = useFetch(
     API_VENUES + `/${venuesId}?_bookings=true`,
   );
@@ -74,8 +77,24 @@ export default function BookingForm({
       });
       const data = await response.json();
       if (response.ok) {
+        toast({
+          title: "Booking Successful",
+          description: "Your Venue booked successfully!",
+          duration: 3000,
+          variant: "default",
+          action: <ToastAction altText="Booking successful">Close</ToastAction>,
+        });
         console.log("Success:", data);
       } else {
+        toast({
+          title: "Oops something went wrong!",
+          description: "Please try again",
+          duration: 3000,
+          variant: "destructive",
+          action: (
+            <ToastAction altText="Booking unsuccessful">Close</ToastAction>
+          ),
+        });
         console.error("Failed:", data);
       }
     } catch (error) {
