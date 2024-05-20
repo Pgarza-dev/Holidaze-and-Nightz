@@ -55,7 +55,6 @@ export default function Venues() {
 
       <Container className="grid min-h-max max-w-screen-2xl grid-cols-1 gap-4 px-4 py-10 font-libre md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-6">
         {data?.data?.map((venue: Venue) => (
-          // console.log(venue),
           <Link
             href={`/venues/${venue?.id}`}
             key={venue?.id}

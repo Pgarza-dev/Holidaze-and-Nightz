@@ -23,6 +23,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { Venue } from "@/shared/types/venue";
 
 interface Booking {
   id: string;
@@ -148,7 +149,7 @@ export default function BookingForm({
         <p>LETS GET YOU SITUATED FOR YOU STAY</p>
       </div>
       <span className="text-red-500">
-        Maximum guest: {data?.data?.maxGuests}
+        {/* Maximum guest: {data?.data?.maxGuests} */}
       </span>
       <Form {...form}>
         <form
