@@ -6,9 +6,12 @@ import { Button } from "../ui/button";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { formSchema } from "@/app/forms/loginFormSchema";
+import { ToastAction } from "@/components/ui/toast";
+import { useToast } from "@/components/ui/use-toast";
 
 export default function LoginForm() {
   const router = useRouter();
+  const { toast } = useToast();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -26,8 +29,7 @@ export default function LoginForm() {
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-  
-    
+
     try {
       const formData = new FormData(e.currentTarget as HTMLFormElement);
       const formObject = Object.fromEntries(formData);
@@ -39,11 +41,32 @@ export default function LoginForm() {
       const data = await response.json();
       console.log(data);
       if (response.ok) {
+        toast({
+          title: "Login Successful",
+          description: "You have successfully logged in",
+          duration: 3000,
+          variant: "default",
+          action: <ToastAction altText="Login successful">Close</ToastAction>,
+        });
+
         console.log(data);
         router.push("/profile");
+      } else {
+        toast({
+          title: "Login Failed",
+          description: "Please check your email and password",
+          duration: 3000,
+          action: <ToastAction altText="Login failed">Close</ToastAction>,
+        });
       }
     } catch (error) {
       console.log(error);
+      toast({
+        title: "Login Failed",
+        description: "Please check if your email and password are correct",
+        duration: 3000,
+        action: <ToastAction altText="Login failed">Close</ToastAction>,
+      });
     }
   }
   return (
@@ -56,9 +79,11 @@ export default function LoginForm() {
           Please enter you email and password to login
         </p>
       </div>
-      <div className=" rounded-xl bg-customBlack px-6 py-3 text-customWhite">
+      <div className=" rounded-xl bg-customBlack px-6 py-3 ">
         <form onSubmit={handleSubmit} className="flex flex-col">
-          <label htmlFor="email">Email</label>
+          <label className="text-customWhite" htmlFor="email">
+            Email
+          </label>
           <input
             className="mb-2 h-10 w-full rounded-md p-2"
             type="text"
@@ -67,7 +92,9 @@ export default function LoginForm() {
             onChange={handleEmailChange}
             placeholder="Enter your email"
           />
-          <label htmlFor="password">Password</label>
+          <label className="text-customWhite" htmlFor="password">
+            Password
+          </label>
           <input
             className="mb-2 h-10 w-full rounded-md p-2"
             type="password"
