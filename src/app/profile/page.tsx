@@ -47,11 +47,6 @@ async function ProfilePage() {
         <div className="h-full w-full p-4">
           {data.data && username === data.data.name ? (
             <>
-              <Link href="/editProfile">
-                <Button className="hover:bg-customWhite hover:text-customBlack">
-                  Edit Profile
-                </Button>
-              </Link>
               <Avatar className="h-20 w-20 md:h-1/4 md:w-1/4">
                 <AvatarImage src={data.data.avatar.url} />
                 <AvatarFallback>{data.data.name}</AvatarFallback>
@@ -63,6 +58,18 @@ async function ProfilePage() {
               <p>Venue Manager: {data.data.venueManager ? "Yes" : "No"}</p>
               <p>My venues: {data.data._count.venues}</p>
               <p>My bookings: {data.data._count.bookings}</p>
+              <div className="flex justify-end gap-4">
+                <Link href="/editProfile">
+                  <Button className="hover:bg-customWhite hover:text-customBlack">
+                    Edit Profile
+                  </Button>
+                </Link>
+                <Link href="/createVenue">
+                  <Button className="hover:bg-customWhite hover:text-customBlack">
+                    Create Venue
+                  </Button>
+                </Link>
+              </div>
             </>
           ) : (
             <div>
