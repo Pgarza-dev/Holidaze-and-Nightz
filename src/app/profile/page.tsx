@@ -2,6 +2,8 @@ import Container from "@/components/Container";
 import LogoutButton from "@/components/LogoutButton";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
+import DisplayUserBookings from "@/components/viewProfileBookings";
+import DisplayUserVenues from "@/components/viewProfileVenues";
 import { cookies } from "next/headers";
 import Link from "next/link";
 
@@ -11,7 +13,7 @@ async function ProfilePage() {
   const getData = async () => {
     try {
       const response = await fetch(
-        `https://v2.api.noroff.dev/holidaze/profiles/${username}`,
+        `https://v2.api.noroff.dev/holidaze/profiles/${username}?_bookings=true&_venues=true`,
         {
           method: "GET",
           headers: {
@@ -69,6 +71,14 @@ async function ProfilePage() {
                     Create Venue
                   </Button>
                 </Link>
+              </div>
+              <div className="my-4 h-full w-full p-4">
+                <h3 className="text-center text-2xl">My Venues</h3>
+                <DisplayUserVenues userVenues={data.data.venues} />
+              </div>
+              <div className="h-full w-full">
+                <h3 className="text-center text-2xl">My Bookings</h3>
+                <DisplayUserBookings userBookings={data.data.bookings} />
               </div>
             </>
           ) : (
