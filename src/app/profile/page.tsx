@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import DisplayUserBookings from "@/components/viewProfileBookings";
 import DisplayUserVenues from "@/components/viewProfileVenues";
 import { cookies } from "next/headers";
+import Image from "next/image";
 import Link from "next/link";
 
 async function ProfilePage() {
@@ -45,40 +46,69 @@ async function ProfilePage() {
       <div className="flex flex-row items-center gap-4">
         <LogoutButton />
       </div>
-      <Container className="flex h-full w-full flex-row border-2 border-customBlack p-5">
+      <Container className="flex h-full w-full flex-row overflow-hidden border-2 border-customBlack p-5">
         <div className="h-full w-full p-4">
           {data.data && username === data.data.name ? (
             <>
-              <Avatar className="h-20 w-20 md:h-1/4 md:w-1/4">
-                <AvatarImage src={data.data.avatar.url} />
-                <AvatarFallback>{data.data.name}</AvatarFallback>
-              </Avatar>
-              <h1>{data.data.name}</h1>
-              <p>{data.data.email}</p>
-              <p>{data.data.bio}</p>
+              <div>
+                <div className="relative z-0 flex h-full w-full items-center justify-center">
+                  <Image
+                    src={data.data.banner.url}
+                    alt={data.data.banner.alt}
+                    width={500}
+                    height={500}
+                    className="absolute top-0 z-0 max-h-96 w-full rounded-lg object-cover"
+                  />
+                </div>
+                <div>
+                  <div className="z-50 flex flex-col items-center justify-center">
+                    <Avatar className="h-20 w-20 md:h-1/5 md:w-1/5">
+                      <AvatarImage src={data.data.avatar.url} />
+                      <AvatarFallback>{data.data.name}</AvatarFallback>
+                    </Avatar>
+                    <div className="z-50 flex w-full flex-col items-center justify-center rounded-lg bg-customWhite bg-opacity-60 p-4 font-semibold">
+                      <h1 className="z-50">{data.data.name}</h1>
+                      <p className="z-50">{data.data.email}</p>
+                      <div className="flex flex-row gap-4">
+                        <p className="z-50">
+                          Venue Manager: {data.data.venueManager ? "Yes" : "No"}
+                        </p>
+                        <p className="z-50">
+                          My venues: {data.data._count.venues}
+                        </p>
+                        <p className="z-50">
+                          My bookings: {data.data._count.bookings}
+                        </p>
+                      </div>
+                      <p className="z-50">{data.data.bio}</p>
+                    </div>
+                    <div className="z-50 flex flex-row justify-end gap-4">
+                      <Link href="/editProfile">
+                        <Button className="hover:bg-customWhite hover:text-customBlack">
+                          Edit Profile
+                        </Button>
+                      </Link>
+                      <Link href="/createVenue">
+                        <Button className="hover:bg-customWhite hover:text-customBlack">
+                          Create Venue
+                        </Button>
+                      </Link>
+                    </div>
+                  </div>
 
-              <p>Venue Manager: {data.data.venueManager ? "Yes" : "No"}</p>
-              <p>My venues: {data.data._count.venues}</p>
-              <p>My bookings: {data.data._count.bookings}</p>
-              <div className="flex justify-end gap-4">
-                <Link href="/editProfile">
-                  <Button className="hover:bg-customWhite hover:text-customBlack">
-                    Edit Profile
-                  </Button>
-                </Link>
-                <Link href="/createVenue">
-                  <Button className="hover:bg-customWhite hover:text-customBlack">
-                    Create Venue
-                  </Button>
-                </Link>
-              </div>
-              <div className="my-4 h-full w-full p-4">
-                <h3 className="text-center text-2xl">My Venues</h3>
-                <DisplayUserVenues userVenues={data.data.venues} />
-              </div>
-              <div className="h-full w-full">
-                <h3 className="text-center text-2xl">My Bookings</h3>
-                <DisplayUserBookings userBookings={data.data.bookings} />
+                  <div className="my-4 h-full w-full p-4">
+                    <h3 className="p-4 text-center text-2xl underline underline-offset-4 md:text-4xl">
+                      My Venues
+                    </h3>
+                    <DisplayUserVenues userVenues={data.data.venues} />
+                  </div>
+                  <div className="h-full w-full">
+                    <h3 className="p-4 text-center text-2xl underline underline-offset-4 md:text-4xl">
+                      My Bookings
+                    </h3>
+                    <DisplayUserBookings userBookings={data.data.bookings} />
+                  </div>
+                </div>
               </div>
             </>
           ) : (
