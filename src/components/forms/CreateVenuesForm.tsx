@@ -21,10 +21,6 @@ import {
 } from "@/components/ui/form";
 import Container from "@/components/Container";
 import Link from "next/link";
-import useFetch from "@/lib/hooks/data";
-import { cookies } from "next/headers";
-import { Url } from "next/dist/shared/lib/router/router";
-
 type CreateVenueApi = {
   name: string;
   description: string;
@@ -410,6 +406,42 @@ function CreateVenue({ accessToken }: { accessToken: string }) {
                       placeholder="City"
                       {...field}
                       id="city"
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="zip"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel htmlFor="zip">Zip</FormLabel>
+                  <FormControl>
+                    <Input
+                      type="text"
+                      placeholder="Zip code"
+                      {...field}
+                      id="zip"
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="country"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel htmlFor="country">Country</FormLabel>
+                  <FormControl>
+                    <Input
+                      type="text"
+                      placeholder="Country"
+                      {...field}
+                      id="country"
                     />
                   </FormControl>
                   <FormMessage />
