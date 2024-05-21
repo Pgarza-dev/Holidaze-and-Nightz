@@ -60,21 +60,21 @@ async function ProfilePage() {
                   />
                 </div>
                 <div>
-                  <div className="z-50 flex flex-col items-center justify-center text-lg">
+                  <div className="flex flex-col items-center justify-center text-lg">
                     <Avatar className="my-2 h-20 w-20 md:h-1/6 md:w-1/6">
                       <AvatarImage src={data.data.avatar.url} />
                       <AvatarFallback>{data.data.name}</AvatarFallback>
                     </Avatar>
-                    <div className="z-50 flex w-3/4 flex-col items-center justify-center rounded-lg bg-background bg-opacity-80 p-4 dark:bg-customBlack">
-                      <h1 className="z-50 text-2xl">{data.data.name}</h1>
-                      <p className="z-50 text-base">{data.data.email}</p>
+                    <div className="z-10 flex w-3/4 flex-col items-center justify-center rounded-lg bg-background bg-opacity-80 p-4 dark:bg-customBlack">
+                      <h1 className="text-2xl">{data.data.name}</h1>
+                      <p className="text-base">{data.data.email}</p>
                       <div className="flex flex-row gap-4">
-                        <p className="z-50">
+                        <p className="">
                           Venue Manager:{" "}
                           {data.data.venueManager ? "Yes ✓" : "No"}
                         </p>
                       </div>
-                      <p className="z-50 text-center">{data.data.bio}</p>
+                      <p className=" text-center">{data.data.bio}</p>
                     </div>
 
                     <Link

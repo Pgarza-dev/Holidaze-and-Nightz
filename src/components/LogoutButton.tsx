@@ -1,7 +1,4 @@
-// components/LogoutButton.tsx
 "use client";
-import { cookies } from "next/headers";
-import Link from "next/link";
 import React from "react";
 import { Button } from "./ui/button";
 

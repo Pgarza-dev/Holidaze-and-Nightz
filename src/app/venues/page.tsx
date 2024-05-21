@@ -19,7 +19,7 @@ export default function Venues() {
     <>
       <div className="h-full w-full p-4">
         <svg
-          className="mx-auto flex animate-bounce items-center justify-center"
+          className="mx-auto flex items-center justify-center"
           width="2"
           height="60"
           viewBox="0 0 2 93"
@@ -30,15 +30,15 @@ export default function Venues() {
         </svg>
 
         <div className="relative flex flex-col items-center justify-center font-bodoni">
-          <h1 className="not-sr-only uppercase text-customBlack text-opacity-10 lg:text-7xl">
-            venues
+          <h1 className=" text-3xl uppercase text-customBlack text-opacity-10 md:text-5xl lg:text-7xl">
+            Holidaze & Nightz
           </h1>
-          <h2 className="absolute uppercase text-customBlack lg:text-3xl">
-            venues
+          <h2 className="absolute text-lg uppercase text-customBlack md:text-2xl lg:text-3xl">
+            Holidaze & Nightz
           </h2>
         </div>
         <svg
-          className="mx-auto flex animate-bounce items-center justify-center"
+          className="mx-auto flex items-center justify-center"
           width="8"
           height="60"
           viewBox="0 0 8 59"
