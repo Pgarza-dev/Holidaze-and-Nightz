@@ -1,8 +1,15 @@
 import Image from "next/image";
+import Link from "next/link";
+import { Button } from "./ui/button";
 
 const DisplayUserVenues = ({ userVenues }: { userVenues: any[] }) => {
   return (
     <div className="flex w-full flex-col gap-4">
+      <Link href="/createVenue">
+        <Button className="hover:bg-customWhite hover:text-customBlack">
+          Create Venue
+        </Button>
+      </Link>
       {userVenues.map((venue) => (
         <div
           key={venue.id}
