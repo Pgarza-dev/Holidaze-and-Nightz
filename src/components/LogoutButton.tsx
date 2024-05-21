@@ -12,7 +12,7 @@ export default function LogoutButton() {
         method: "POST",
       });
       if (response.ok) {
-        window.location.href = "/"; // Redirect to the homepage or login page after logging out
+        window.location.href = "/";
       } else {
         console.error("Failed to log out");
       }
@@ -22,11 +22,14 @@ export default function LogoutButton() {
   };
 
   return (
-    <Button
-      onClick={handleLogout}
-      className=" z-50 hover:bg-customWhite hover:text-customBlack"
-    >
-      Logout
-    </Button>
+    <div className="py-4">
+      <Button
+        onClick={handleLogout}
+        variant="default"
+        className=" z-50 hover:bg-customWhite hover:bg-destructive  hover:text-white"
+      >
+        Logout
+      </Button>
+    </div>
   );
 }

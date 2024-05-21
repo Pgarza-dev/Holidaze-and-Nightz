@@ -6,7 +6,7 @@ const DisplayUserBookings = ({ userBookings }: { userBookings: any[] }) => {
       {userBookings.map((booking) => (
         <div
           key={booking.id}
-          className="bg-customBlackWhite border-2-customBlack flex h-full w-full cursor-pointer flex-row justify-evenly rounded-lg bg-customBlack p-4 text-customWhite transition-colors duration-700 hover:bg-customWhite hover:text-customBlack hover:shadow-lg "
+          className="bg-customBlackWhite border-2-customBlack flex h-full w-full cursor-pointer flex-row justify-evenly rounded-lg bg-customBlack p-4 text-customWhite transition-colors duration-300 hover:bg-customWhite hover:text-customBlack hover:shadow-lg "
         >
           <div>
             <Image

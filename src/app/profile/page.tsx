@@ -42,11 +42,10 @@ async function ProfilePage() {
   const data = await getData();
   console.log(data);
   return (
-    <div className="h-full w-full p-10">
-      <div className="flex flex-row items-center gap-4">
-        <LogoutButton />
-      </div>
-      <Container className="flex h-full w-full flex-row overflow-hidden border-2 border-customBlack p-5">
+    <div className="h-full w-full p-10 font-libre">
+      <LogoutButton />
+
+      <Container className="flex h-full w-full flex-row border-2 border-customBlack p-5">
         <div className="h-full w-full p-4">
           {data.data && username === data.data.name ? (
             <>
@@ -61,39 +60,29 @@ async function ProfilePage() {
                   />
                 </div>
                 <div>
-                  <div className="z-50 flex flex-col items-center justify-center">
-                    <Avatar className="h-20 w-20 md:h-1/5 md:w-1/5">
+                  <div className="z-50 flex flex-col items-center justify-center text-lg">
+                    <Avatar className="my-2 h-20 w-20 md:h-1/6 md:w-1/6">
                       <AvatarImage src={data.data.avatar.url} />
                       <AvatarFallback>{data.data.name}</AvatarFallback>
                     </Avatar>
-                    <div className="z-50 flex w-full flex-col items-center justify-center rounded-lg bg-customWhite bg-opacity-60 p-4 font-semibold">
-                      <h1 className="z-50">{data.data.name}</h1>
-                      <p className="z-50">{data.data.email}</p>
+                    <div className="z-50 flex w-3/4 flex-col items-center justify-center rounded-lg bg-background bg-opacity-80 p-4 dark:bg-customBlack">
+                      <h1 className="z-50 text-2xl">{data.data.name}</h1>
+                      <p className="z-50 text-base">{data.data.email}</p>
                       <div className="flex flex-row gap-4">
                         <p className="z-50">
-                          Venue Manager: {data.data.venueManager ? "Yes" : "No"}
-                        </p>
-                        <p className="z-50">
-                          My venues: {data.data._count.venues}
-                        </p>
-                        <p className="z-50">
-                          My bookings: {data.data._count.bookings}
+                          Venue Manager:{" "}
+                          {data.data.venueManager ? "Yes ✓" : "No"}
                         </p>
                       </div>
-                      <p className="z-50">{data.data.bio}</p>
+                      <p className="z-50 text-center">{data.data.bio}</p>
                     </div>
-                    <div className="z-50 flex flex-row justify-end gap-4">
-                      <Link href="/editProfile">
-                        <Button className="hover:bg-customWhite hover:text-customBlack">
-                          Edit Profile
-                        </Button>
-                      </Link>
-                      <Link href="/createVenue">
-                        <Button className="hover:bg-customWhite hover:text-customBlack">
-                          Create Venue
-                        </Button>
-                      </Link>
-                    </div>
+
+                    <Link
+                      className="z-50 flex w-full justify-end p-2"
+                      href="/editProfile"
+                    >
+                      <Button variant="secondary">Edit Profile</Button>
+                    </Link>
                   </div>
 
                   <div className="my-4 h-full w-full p-4">
