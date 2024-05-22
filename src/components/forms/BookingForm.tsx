@@ -27,14 +27,14 @@ import { Venue } from "@/shared/types/venue";
 import { ToastAction } from "@/components/ui/toast";
 import { useToast } from "@/components/ui/use-toast";
 
-interface Booking {
+type Booking = {
   id: string;
   dateFrom: string;
   dateTo: string;
   guests: number;
   created: string;
   updated: string;
-}
+};
 
 export default function BookingForm({
   venuesId,
@@ -53,8 +53,8 @@ export default function BookingForm({
   const form = useForm<z.infer<typeof bookingFormSchema>>({
     resolver: zodResolver(bookingFormSchema),
     defaultValues: {
-      adults: 1,
-      children: 0,
+      adults: "",
+      children: "",
     },
   });
   console.log(data);
@@ -120,7 +120,7 @@ export default function BookingForm({
     const transformedValues = {
       dateFrom: dateRange.from.toISOString(),
       dateTo: dateRange.to.toISOString(),
-      guests: values.adults + values.children,
+      guests: Number(values.adults) + Number(values.children), // Convert guests to number
       venueId: venuesId,
     };
     handleBooking(transformedValues);
