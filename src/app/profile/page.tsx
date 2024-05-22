@@ -43,8 +43,24 @@ async function ProfilePage() {
   console.log(data);
   return (
     <div className="h-full w-full p-10 font-libre">
-      <LogoutButton />
-
+      <div className="flex flex-row items-center justify-end gap-4">
+        <Link href="/">
+          <Button className="text-lg" variant="link" size="sm">
+            Home
+          </Button>
+        </Link>
+        <Link href="/venues">
+          <Button className="text-lg" variant="link" size="sm">
+            Venues
+          </Button>
+        </Link>
+        <Link href="/editProfile">
+          <Button className="text-lg" variant="link" size="sm">
+            Edit Profile
+          </Button>
+        </Link>
+        <LogoutButton />
+      </div>
       <Container className="flex h-full w-full flex-row border-2 border-customBlack p-5">
         <div className="h-full w-full p-4">
           {data.data && username === data.data.name ? (
@@ -76,13 +92,6 @@ async function ProfilePage() {
                       </div>
                       <p className=" text-center">{data.data.bio}</p>
                     </div>
-
-                    <Link
-                      className="z-50 flex w-full justify-end p-2"
-                      href="/editProfile"
-                    >
-                      <Button variant="secondary">Edit Profile</Button>
-                    </Link>
                   </div>
 
                   <div className="my-4 h-full w-full p-4">
