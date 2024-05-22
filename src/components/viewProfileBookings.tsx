@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { IoMdStar } from "react-icons/io";
 
 const DisplayUserBookings = ({ userBookings }: { userBookings: any[] }) => {
   return (
@@ -22,6 +23,15 @@ const DisplayUserBookings = ({ userBookings }: { userBookings: any[] }) => {
             <p>Guests: {booking?.venue.maxGuests}</p>
             <p>Booked from: {booking?.checkIn}</p>
             <p>Booked to: {booking?.checkOut}</p>
+            <p className="inline-flex items-center">
+              {booking?.venue.rating > 0 ? (
+                Array.from({ length: booking.venue.rating }, (_, index) => (
+                  <IoMdStar className="text-yellow-500" key={index} />
+                ))
+              ) : (
+                <p>Not rated yet</p>
+              )}
+            </p>
           </div>
         </div>
       ))}
