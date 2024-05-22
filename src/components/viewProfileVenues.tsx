@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "./ui/button";
+import { IoMdStar } from "react-icons/io";
 
 const DisplayUserVenues = ({ userVenues }: { userVenues: any[] }) => {
   return (
@@ -27,7 +28,11 @@ const DisplayUserVenues = ({ userVenues }: { userVenues: any[] }) => {
             <h2>{venue?.name}</h2>
             <p>Price per night: ${venue?.price}</p>
             <p>Guests: {venue?.maxGuests}</p>
-            <p>Rated: {venue?.rating} / 5</p>
+            <p className="inline-flex items-center">
+              {Array.from({ length: venue?.rating }, (_, index) => (
+                <IoMdStar className="text-yellow-500" key={index} />
+              ))}
+            </p>
           </div>
         </div>
       ))}
