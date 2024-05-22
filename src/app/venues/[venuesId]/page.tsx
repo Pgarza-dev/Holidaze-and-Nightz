@@ -46,10 +46,10 @@ export default function VenueDetails({ params }: VenueProps) {
       <Container>
         <div className="flex h-auto w-full items-center p-4 py-10 font-bold">
           <div className="relative flex flex-col items-center justify-center font-bodoni">
-            <h1 className="not-sr-only uppercase text-customBlack text-opacity-10 lg:text-7xl">
+            <h1 className="not-sr-only text-3xl uppercase text-customBlack text-opacity-10 md:text-5xl lg:text-7xl">
               location
             </h1>
-            <h2 className="absolute uppercase text-customBlack lg:text-3xl">
+            <h2 className="absolute uppercase text-customBlack sm:text-2xl lg:text-3xl">
               location
             </h2>
           </div>
@@ -73,7 +73,7 @@ export default function VenueDetails({ params }: VenueProps) {
               <h2 className="font-bold md:p-6 md:text-lg lg:p-7 lg:text-xl xl:p-10 xl:text-4xl">
                 {venue?.location?.city}, {venue?.location?.country}
               </h2>
-              <p className=" overflow-y-scroll overscroll-contain px-8 pb-6 text-base xl:text-lg">
+              <p className=" overflow-y-auto overscroll-contain px-8 pb-6 text-base xl:text-lg">
                 {venue?.description}
               </p>{" "}
               <Button className="border-2 bg-customBlack text-2xl text-customWhite duration-300 hover:ring-2 hover:ring-customBlack hover:dark:bg-customWhite hover:dark:text-customBlack">
