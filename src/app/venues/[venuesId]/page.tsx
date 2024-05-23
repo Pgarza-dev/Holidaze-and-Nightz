@@ -93,9 +93,9 @@ export default function VenueDetails({ params }: VenueProps) {
               {venue?.media?.map((mediaItem: Media, index: number) => (
                 <>
                   <div className="absolute right-0 top-0 flex flex-row gap-2 p-2 font-libre sm:flex sm:flex-col">
-                    <Button variant="secondary" className="">
+                    {/* <Button variant="secondary" className="">
                       <Link href={`/venues/${venueId}/edit`}>Edit Venue</Link>
-                    </Button>
+                    </Button> */}
                     {/* {venue?.id && <DeleteVenue venueId={venueId} />
                     } */}
                   </div>
