@@ -9,7 +9,7 @@ type VenueProps = {
   accessToken: string;
 };
 
-async function DeleteVenueButton({ venueId, accessToken }: VenueProps) {
+function DeleteVenueButton({ venueId, accessToken }: VenueProps) {
   const router = useRouter();
 
   const handleDelete = async () => {
