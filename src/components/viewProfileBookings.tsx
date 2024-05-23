@@ -31,7 +31,7 @@ const DisplayUserBookings = ({ userBookings }: { userBookings: any[] }) => {
                     <IoMdStar className="text-yellow-500" key={index} />
                   ))
                 ) : (
-                  <p>Not rated yet</p>
+                  <span>Not rated yet</span>
                 )}
               </p>
             </div>

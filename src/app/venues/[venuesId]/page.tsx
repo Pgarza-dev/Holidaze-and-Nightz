@@ -24,6 +24,7 @@ import { IoPersonOutline } from "react-icons/io5";
 import { BsHouse } from "react-icons/bs";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import EditVenueButton from "@/components/EditVenueButton";
 
 type VenueProps = {
   params: { [key: string]: string | string[] | undefined };
@@ -80,6 +81,7 @@ export default function VenueDetails({ params }: VenueProps) {
                 <Link href={`/venues/${venueId}/bookings`}>Book</Link>
               </Button>
             </div>
+            {/* <EditVenueButton editVenues={data?.data.venues} /> */}
           </div>
           <Carousel
             opts={{
@@ -89,39 +91,49 @@ export default function VenueDetails({ params }: VenueProps) {
           >
             <CarouselContent className="">
               {venue?.media?.map((mediaItem: Media, index: number) => (
-                <CarouselItem
-                  key={index}
-                  className="m-auto cursor-pointer md:basis-1/2 lg:basis-2/3 xl:basis-2/4"
-                >
-                  <div className="">
-                    <Card className="">
-                      <CardContent className="m-0 aspect-square border-none p-0">
-                        <Image
-                          key={mediaItem.url}
-                          src={mediaItem.url}
-                          alt={mediaItem.alt}
-                          width={800}
-                          height={500}
-                          className="h-full w-full object-cover"
-                        />
-                      </CardContent>
-                    </Card>
-                    <div className="flex flex-row justify-between border-customBlack p-4 font-libre text-base text-customBlack ">
-                      <div className=" flex flex-col">
-                        <div className="inline-flex gap-2">
-                          <p className="">{venue?.location.city},</p>
-                          <p>{venue?.location.country}</p>
-                        </div>
-                        {/* <span className="cursor-pointer underline-offset-8 hover:underline">
+                <>
+                  <div className="absolute right-0 top-0 flex flex-row gap-2 p-2 font-libre sm:flex sm:flex-col">
+                    <Button variant="secondary" className="">
+                      <Link href={`/venues/${venueId}/edit`}>Edit Venue</Link>
+                    </Button>
+                    {/* {venue?.id && <DeleteVenue venueId={venueId} />
+                    } */}
+                  </div>
+
+                  <CarouselItem
+                    key={index}
+                    className="m-auto cursor-pointer md:basis-1/2 lg:basis-2/3 xl:basis-2/4"
+                  >
+                    <div className="">
+                      <Card className="">
+                        <CardContent className="m-0 aspect-square border-none p-0">
+                          <Image
+                            key={mediaItem.url}
+                            src={mediaItem.url}
+                            alt={mediaItem.alt}
+                            width={800}
+                            height={500}
+                            className="h-full w-full object-cover"
+                          />
+                        </CardContent>
+                      </Card>
+                      <div className="flex flex-row justify-between border-customBlack p-4 font-libre text-base text-customBlack ">
+                        <div className=" flex flex-col">
+                          <div className="inline-flex gap-2">
+                            <p className="">{venue?.location.city},</p>
+                            <p>{venue?.location.country}</p>
+                          </div>
+                          {/* <span className="cursor-pointer underline-offset-8 hover:underline">
                           More →
                         </span> */}
+                        </div>
+                        <span className="">
+                          {new Date(venue?.created).toISOString().split("T")[0]}
+                        </span>
                       </div>
-                      <span className="">
-                        {new Date(venue?.created).toISOString().split("T")[0]}
-                      </span>
                     </div>
-                  </div>
-                </CarouselItem>
+                  </CarouselItem>
+                </>
               ))}
             </CarouselContent>
             <CarouselPrevious className="cursor-pointer" />
