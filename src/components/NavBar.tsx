@@ -4,8 +4,7 @@ import Link from "next/link";
 import { ThemeToggle } from "./ThemeToggle";
 import { IoIosSearch } from "react-icons/io";
 import Container from "@/components/Container";
-import LogoutButton from "@/components/LogoutButton";
-import { isUserLoggedIn } from "@/utils/auth";
+import SearchBar from "@/components/SearchBar";
 
 function NavBar() {
   const [isClicked, setisClicked] = useState(false);
@@ -15,10 +14,10 @@ function NavBar() {
   };
 
   return (
-    <div className="w-full bg-customBlack">
+    <div className="relative w-full bg-customBlack">
       <Container className="relative z-10 w-full font-libre ">
         <header>
-          <nav className="flex flex-row items-center justify-between">
+          <nav className="relative flex flex-row items-center justify-between">
             <div className="flex flex-col gap-4">
               <button
                 className="text-base text-background hover:text-secondary dark:text-darkText md:text-3xl"
@@ -27,14 +26,10 @@ function NavBar() {
                 Menu
               </button>
             </div>
+            <div className="relative top-0 flex items-center justify-center">
+              <SearchBar />
+            </div>
 
-            <form className="">
-              <input
-                type="text"
-                placeholder="Search"
-                className="hidden w-96 flex-1 rounded-lg border border-background bg-background p-2 text-foreground outline-none transition-all duration-300 ease-in-out placeholder:text-sm focus:border-primary focus:ring-2 focus:ring-primary md:block"
-              />
-            </form>
             <div className="flex items-center justify-center gap-4 text-base md:text-3xl">
               <IoIosSearch className="text-background hover:text-secondary dark:text-darkText" />
               <ThemeToggle />
