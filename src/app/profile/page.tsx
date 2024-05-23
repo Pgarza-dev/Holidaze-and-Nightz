@@ -1,16 +1,22 @@
 import Container from "@/components/Container";
+import DeleteVenueButton from "@/components/DeleteVenueButton";
 import LogoutButton from "@/components/LogoutButton";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import DisplayUserBookings from "@/components/viewProfileBookings";
 import DisplayUserVenues from "@/components/viewProfileVenues";
+import { API_VENUES } from "@/shared/ApiEndPoints";
 import { cookies } from "next/headers";
 import Image from "next/image";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 
 async function ProfilePage() {
   const username = cookies().get("username")?.value;
   const accessToken = cookies().get("accessToken")?.value;
+  if (!accessToken) {
+    return redirect("/login");
+  }
   const getData = async () => {
     try {
       const response = await fetch(
@@ -95,10 +101,14 @@ async function ProfilePage() {
                   </div>
 
                   <div className="my-4 h-full w-full p-4">
-                    <h3 className="p-4 text-center text-2xl underline underline-offset-4 md:text-4xl">
+                    <h3 className="pb-5 pt-10 text-center text-2xl underline underline-offset-4 md:text-4xl">
                       My Venues
                     </h3>
-                    <DisplayUserVenues userVenues={data.data.venues} />
+
+                    <DisplayUserVenues
+                      userVenues={data.data.venues}
+                      accessToken={accessToken}
+                    />
                   </div>
                   <div className="h-full w-full">
                     <h3 className="p-4 text-center text-2xl underline underline-offset-4 md:text-4xl">

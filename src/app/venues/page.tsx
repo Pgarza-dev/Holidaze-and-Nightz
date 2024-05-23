@@ -80,7 +80,6 @@ export default function Venues() {
                 </span>
               </div>
               <div className="mt-4 flex items-center justify-between text-lg text-darkText dark:text-white">
-                {/* <Link href={`/venues/${venue?.id}`}>View Venue</Link> */}
                 <div>
                   <span className="font-bold">${venue?.price}</span>
                   <span> / night</span>
