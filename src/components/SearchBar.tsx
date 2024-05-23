@@ -71,7 +71,10 @@ function SearchBar() {
         className=" hidden w-96 flex-1 rounded-lg border border-background bg-background p-2 text-foreground outline-none transition-all duration-300 ease-in-out placeholder:text-sm focus:border-primary md:block"
       />
       {filteredProducts.map((venue: any) => (
-        <div className=" absolute flex w-96 flex-col gap-4 rounded-lg bg-customBlack p-4">
+        <div
+          key={venue?.id}
+          className=" absolute flex w-96 flex-col gap-4 rounded-lg bg-customBlack p-4"
+        >
           <Link
             href={`/venues/${venue?.id}`}
             key={venue?.id}
