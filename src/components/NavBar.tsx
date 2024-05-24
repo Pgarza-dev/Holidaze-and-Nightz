@@ -1,14 +1,14 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, use } from "react";
 import Link from "next/link";
 import { ThemeToggle } from "./ThemeToggle";
 import { IoIosSearch } from "react-icons/io";
 import Container from "@/components/Container";
 import SearchBar from "@/components/SearchBar";
-
+import LogoutButton from "./LogoutButton";
 function NavBar() {
   const [isClicked, setisClicked] = useState(false);
-  const [loggedIn, setLoggedIn] = useState(true);
+
   const toggleNavbar = () => {
     setisClicked(!isClicked);
   };
@@ -33,6 +33,7 @@ function NavBar() {
             <div className="flex items-center justify-center gap-4 text-base md:text-3xl">
               <IoIosSearch className="text-background hover:text-secondary dark:text-darkText" />
               <ThemeToggle />
+              {/* <LogoutButton accessToken="accessToken" /> */}
             </div>
           </nav>
         </header>
@@ -53,20 +54,6 @@ function NavBar() {
             HOME
           </Link>
           <Link
-            href="/book"
-            onClick={toggleNavbar}
-            className="text-base text-darkText opacity-50 hover:opacity-100 dark:text-darkText md:text-3xl"
-          >
-            BOOK
-          </Link>
-          <Link
-            href="/host"
-            onClick={toggleNavbar}
-            className="text-base text-darkText opacity-50 hover:opacity-100 dark:text-darkText md:text-3xl"
-          >
-            HOST
-          </Link>
-          <Link
             href="/venues"
             onClick={toggleNavbar}
             className="text-base text-darkText opacity-50 hover:opacity-100 dark:text-darkText md:text-3xl"
@@ -80,13 +67,7 @@ function NavBar() {
           >
             REGISTER
           </Link>
-          <Link
-            href="/login"
-            onClick={toggleNavbar}
-            className="text-base text-darkText opacity-50 hover:opacity-100 dark:text-darkText md:text-3xl"
-          >
-            LOGIN
-          </Link>
+
           <div className="flex flex-row gap-4 pt-[65%] text-base uppercase text-darkText dark:text-darkText md:text-lg ">
             <Link
               href="/about"
