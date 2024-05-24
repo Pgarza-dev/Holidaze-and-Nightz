@@ -47,7 +47,7 @@ const DisplayUserVenues = ({ userVenues, accessToken }: Props) => {
             </Link>
 
             <DeleteVenueButton venueId={venue.id} accessToken={accessToken} />
-            <EditVenueButton accessToken="accessToken" venueId="venueId" />
+            <EditVenueButton accessToken={accessToken} venueId={venue.id} />
           </>
         ))}
       </div>

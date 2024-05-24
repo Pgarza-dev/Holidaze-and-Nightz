@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect } from "react";
+import React from "react";
 import { Button } from "./ui/button";
 import EditManagedVenueForm from "@/components/forms/EditManagedVenueForm";
 
@@ -24,7 +24,9 @@ function EditVenueButton({ venueId, accessToken }: Props) {
         Edit Venue
       </Button>
 
-      {isClicked && <EditManagedVenueForm accessToken={accessToken} />}
+      {isClicked && (
+      <EditManagedVenueForm venueId={venueId} accessToken={accessToken} />
+      )}
     </>
   );
 }

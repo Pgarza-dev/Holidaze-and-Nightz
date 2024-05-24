@@ -44,7 +44,13 @@ type EditVenueApi = {
   };
 };
 
-function EditVenue({ accessToken }: { accessToken: string }) {
+function EditVenue({
+  accessToken,
+  venueId,
+}: {
+  accessToken: string;
+  venueId: string;
+}) {
   const { toast } = useToast();
 
   const form = useForm<z.infer<typeof editVenueScheme>>({
@@ -72,7 +78,7 @@ function EditVenue({ accessToken }: { accessToken: string }) {
 
   async function handleEditVenue(formData: EditVenueApi) {
     try {
-      const response = await fetch(API_VENUES, {
+      const response = await fetch(API_VENUES + `/${venueId}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
