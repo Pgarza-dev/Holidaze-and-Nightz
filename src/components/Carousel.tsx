@@ -6,6 +6,7 @@ import luxuryHouseTwo from "@/app/public/luxuryHouseTwo.jpg";
 import luxuryHouseThree from "@/app/public/luxuryHouseThree.jpg";
 import luxuryHouseFour from "@/app/public/luxuryHouseFour.jpg";
 import luxuryHouseFive from "@/app/public/landing.jpg";
+import Link from "next/link";
 
 import { Card, CardContent } from "@/components/ui/card";
 import {
@@ -37,49 +38,53 @@ const imageTitles = ["RELAX", "LIVE", "EXPLORE", "FAMILY", "FUN"];
 
 function CarouselSection() {
   return (
-    <div className="bg-customBlack overflow-hidden">
+    <div className="w-full bg-customBlack">
       <Container>
         <Carousel
           opts={{
-            align: "center",
+            align: "start",
           }}
-          className="w-full max-w-9xl ms-40 bg-customBlack">
+          className="ms-10 max-w-fit bg-customBlack"
+        >
           <CarouselContent>
             {Array.from({ length: 5 }).map((_, index) => (
               <CarouselItem
                 key={index}
-                className="md:basis-1/2 lg:basis-1/3 xl:basis-2/5 cursor-pointer">
-                <div className="p-8 border-l-8">
+                className="cursor-pointer md:basis-1/2 lg:basis-1/3 xl:basis-2/5"
+              >
+                <div className="border-l-8 p-8">
                   <Card className="border-none">
                     <CardContent className="flex aspect-square items-center  justify-center p-0">
-                      <div className="absolute font-bodoni p-4 md:p-6 lg:p-7 xl:p-10 bg-customBlack bg-opacity-65 text-background dark:text-darkText text-base md:text-lg lg:text-xl xl:text-4xl">
+                      <div className="absolute bg-customBlack bg-opacity-65 p-4 font-bodoni text-base text-background dark:text-darkText md:p-6 md:text-lg lg:p-7 lg:text-xl xl:p-10 xl:text-4xl">
                         {imageTitles[index % images.length]}
                       </div>
                       <Image
                         src={images[index % images.length]}
                         alt={`House ${index + 1}`}
-                        className="w-full h-full object-cover"
+                        className="h-full w-full object-cover"
                         width={500}
                         height={500}
                         priority={true}
                       />
                     </CardContent>
-                    <div className="font-libre bg-customBlack text-background dark:text-darkText text-base md:text-lg lg:text-xl flex flex-row justify-between pt-6">
+                    <div className="flex flex-row justify-between bg-customBlack pt-6 font-libre text-base text-background dark:text-darkText md:text-lg lg:text-xl">
                       <div className=" flex flex-col">
                         {houseLocations[index % houseLocations.length]}
-                        <span className="hover:underline underline-offset-8 cursor-pointer">
+                        <Link
+                          href="/venues"
+                          className="cursor-pointer underline-offset-8 hover:underline"
+                        >
                           More →
-                        </span>
+                        </Link>
                       </div>
-                      <span className="  ">17-05</span>
                     </div>
                   </Card>
                 </div>
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious className="cursor-pointer" />
           <CarouselNext className="cursor-pointer" />
+          <CarouselPrevious className="cursor-pointer" />
         </Carousel>
       </Container>
     </div>
