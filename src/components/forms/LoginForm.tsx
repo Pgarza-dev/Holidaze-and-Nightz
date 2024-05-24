@@ -51,6 +51,7 @@ export default function LoginForm() {
 
         console.log(data);
         router.push("/profile");
+        router.refresh();
       } else {
         toast({
           title: "Login Failed",
@@ -72,7 +73,7 @@ export default function LoginForm() {
   return (
     <Container className=" max-w-xl font-libre">
       <div className="text-center">
-        <h1 className="text-xl font-bold text-customBlack  md:text-2xl lg:text-4xl xl:text-5xl">
+        <h1 className="text-xl font-bold md:text-2xl lg:text-4xl xl:text-5xl">
           Login
         </h1>
         <p className=" pb-4 text-center text-lg">
@@ -112,7 +113,7 @@ export default function LoginForm() {
           </Button>
         </form>
         <div className="flex flex-col items-center justify-center gap-2 p-4">
-          <p>Don&apos;t have a profile?</p>
+          <p className="text-customWhite">Don&apos;t have a profile?</p>
           <Link href="/register">
             <Button className="border border-customWhite hover:bg-customWhite hover:text-customBlack">
               Register here

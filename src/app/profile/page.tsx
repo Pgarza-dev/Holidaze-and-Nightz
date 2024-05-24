@@ -65,7 +65,7 @@ async function ProfilePage() {
             Edit Profile
           </Button>
         </Link>
-        <LogoutButton />
+        <LogoutButton accessToken="accessToken" username="username" />
       </div>
       <Container className="flex h-full w-full flex-row border-2 border-customBlack p-5">
         <div className="h-full w-full p-4">

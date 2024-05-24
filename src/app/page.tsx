@@ -12,8 +12,9 @@ import { Button } from "@/components/ui/button";
 
 export default function Home() {
   const cookieStore = cookies();
-  const userCookie = cookieStore.get("user");
-  if (userCookie === undefined) {
+  const accessToken = cookieStore.get("accessToken");
+  const username = cookieStore.get("username");
+  if (!accessToken || !username) {
     return (
       <main className="">
         <div className="ms-4 flex flex-row items-center gap-4">
@@ -33,9 +34,7 @@ export default function Home() {
   return (
     <>
       <div className="ms-4 flex flex-row gap-2">
-        <div className="flex flex-row items-center gap-4">
-          <LogoutButton />
-        </div>
+        
         <div className="flex flex-row items-center gap-4">
           <Button className="z-50 hover:bg-customWhite hover:text-customBlack">
             <Link href="/profile">Profile</Link>
