@@ -3,6 +3,8 @@ import React from "react";
 import { Button } from "./ui/button";
 import { API_VENUES } from "@/shared/ApiEndPoints";
 import { useRouter } from "next/navigation";
+import { ToastAction } from "@/components/ui/toast";
+import { useToast } from "@/components/ui/use-toast";
 
 type VenueProps = {
   venueId: string;
@@ -11,6 +13,7 @@ type VenueProps = {
 
 function DeleteVenueButton({ venueId, accessToken }: VenueProps) {
   const router = useRouter();
+  const { toast } = useToast();
 
   const handleDelete = async () => {
     try {
@@ -28,11 +31,30 @@ function DeleteVenueButton({ venueId, accessToken }: VenueProps) {
       }
 
       if (response.ok) {
+        toast({
+          title: "Venue Deleted",
+          description: "You have successfully deleted a venue",
+          duration: 3000,
+          variant: "default",
+          action: (
+            <ToastAction altText="Venue deleted successfully">
+              Close
+            </ToastAction>
+          ),
+        });
+
         console.log("Venue deleted");
         router.refresh();
       }
     } catch (error) {
       console.error(error);
+      toast({
+        title: "Error",
+        description: "Something went wrong",
+        duration: 3000,
+        variant: "destructive",
+        action: <ToastAction altText="Error">Close</ToastAction>,
+      });
     }
   };
 
