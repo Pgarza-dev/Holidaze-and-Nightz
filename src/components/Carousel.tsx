@@ -52,7 +52,7 @@ function CarouselSection() {
                 key={index}
                 className="cursor-pointer md:basis-1/2 lg:basis-1/3 xl:basis-2/5"
               >
-                <div className="border-l-8 p-8">
+                <div className="border-l-8 border-customWhite p-8 dark:border-customWhite">
                   <Card className="border-none">
                     <CardContent className="flex aspect-square items-center  justify-center p-0">
                       <div className="absolute bg-customBlack bg-opacity-65 p-4 font-bodoni text-base text-background dark:text-darkText md:p-6 md:text-lg lg:p-7 lg:text-xl xl:p-10 xl:text-4xl">
