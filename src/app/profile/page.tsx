@@ -49,7 +49,7 @@ async function ProfilePage() {
   console.log(data);
   return (
     <div className="h-full w-full p-10 font-libre">
-      <div className="flex flex-row items-center justify-end gap-4">
+      <div className="flex flex-row items-center justify-end gap-4 pb-2">
         <Link href="/">
           <Button className="text-lg" variant="link" size="sm">
             Home
