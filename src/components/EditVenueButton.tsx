@@ -1,17 +1,30 @@
-import Link from "next/link";
-import React from "react";
+"use client";
+import React, { useEffect } from "react";
 import { Button } from "./ui/button";
+import EditManagedVenueForm from "@/components/forms/EditManagedVenueForm";
 
-function EditVenueButton({ editVenues }: { editVenues: any[] }) {
+type Props = {
+  venueId: string;
+  accessToken: string;
+};
+
+function EditVenueButton({ venueId, accessToken }: Props) {
+  const [isClicked, setIsClicked] = React.useState(false);
+
+  const handleClick = () => {
+    setIsClicked(!isClicked);
+  };
+
   return (
     <>
-      {editVenues.map((venue) => (
-        <Link href={`venues/${venue.id}`} key={venue.id}>
-          <Button className=" hover:bg-customWhite hover:text-customBlack">
-            Edit Venue
-          </Button>
-        </Link>
-      ))}
+      <Button
+        onClick={handleClick}
+        className=" hover:bg-customWhite hover:text-customBlack"
+      >
+        Edit Venue
+      </Button>
+
+      {isClicked && <EditManagedVenueForm accessToken={accessToken} />}
     </>
   );
 }

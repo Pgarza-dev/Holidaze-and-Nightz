@@ -3,12 +3,12 @@ import Link from "next/link";
 import { Button } from "./ui/button";
 import { IoMdStar } from "react-icons/io";
 import DeleteVenueButton from "@/components/DeleteVenueButton";
-
+import EditVenueButton from "./EditVenueButton";
 
 type Props = {
   accessToken: string;
   userVenues: any[];
- };
+};
 
 const DisplayUserVenues = ({ userVenues, accessToken }: Props) => {
   return (
@@ -20,7 +20,7 @@ const DisplayUserVenues = ({ userVenues, accessToken }: Props) => {
           </Button>
         </Link>
       </div>
-      <div className="flex w-full flex-col gap-4">
+      <div className="flex w-full flex-col gap-4 rounded-lg border-2 border-background p-2 duration-500 hover:border-customBlack hover:shadow-md">
         {userVenues.map((venue) => (
           <>
             <Link href={`venues/${venue.id}`} key={venue.id}>
@@ -45,9 +45,9 @@ const DisplayUserVenues = ({ userVenues, accessToken }: Props) => {
                 </div>
               </div>
             </Link>
-            
 
             <DeleteVenueButton venueId={venue.id} accessToken={accessToken} />
+            <EditVenueButton accessToken="accessToken" venueId="venueId" />
           </>
         ))}
       </div>
