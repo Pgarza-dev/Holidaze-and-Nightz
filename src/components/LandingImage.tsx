@@ -7,22 +7,22 @@ import { RiDoubleQuotesR } from "react-icons/ri";
 function LandingImage() {
   return (
     <>
-      <div className="relative flex justify-center items-center -top-44 z-0">
-        <div className="absolute flex flex-col justify-center items-center gap-20">
-          <h1 className="md:tracking-widest lg:tracking-widest xl:tracking-wide font-bodoni text-2xl md:text-4xl lg:text-6xl xl:text-9xl font-thin text-center w-full text-background dark:text-darkText">
+      <div className="relative -top-44 z-0 flex items-center justify-center">
+        <div className="absolute flex flex-col items-center justify-center gap-20">
+          <h1 className="w-full text-center font-bodoni text-2xl font-thin text-background dark:text-darkText md:text-4xl md:tracking-widest lg:text-6xl lg:tracking-widest xl:text-9xl xl:tracking-wide">
             HOLI•DAZE & NIGHTS
           </h1>
           <div className="flex flex-row">
-            <RiDoubleQuotesL className="text-3xl text-background" />
-            <h4 className="py-3 font-libre px-2 text-base md:text-lg xl:text-2xl tracking-widest font-thin text-center md:block text-background dark:text-darkText">
+            <RiDoubleQuotesL className="text-3xl text-background dark:text-customWhite" />
+            <h4 className="px-2 py-3 text-center font-libre text-base font-thin tracking-widest text-background dark:text-darkText md:block md:text-2xl xl:text-3xl">
               Exquisite service, unparalleled luxury
             </h4>
-            <RiDoubleQuotesR className="text-3xl text-background" />
+            <RiDoubleQuotesR className="text-3xl text-background dark:text-customWhite" />
           </div>
         </div>
 
         <Image
-          className=" object-cover inset-0 h-screen "
+          className=" inset-0 h-screen object-cover "
           src={landingImage}
           alt="Image of luxury living room"
           priority

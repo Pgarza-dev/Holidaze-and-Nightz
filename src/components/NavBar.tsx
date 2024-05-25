@@ -31,9 +31,8 @@ function NavBar() {
             </div>
 
             <div className="flex items-center justify-center gap-4 text-base md:text-3xl">
-              <IoIosSearch className="text-background hover:text-secondary dark:text-darkText" />
+              <IoIosSearch className="text-background dark:text-customWhite" />
               <ThemeToggle />
-              {/* <LogoutButton accessToken="accessToken" /> */}
             </div>
           </nav>
         </header>
