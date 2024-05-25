@@ -41,10 +41,10 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           {/* <LoginProvider> */}
-            <NavBar />
-            <main className="min-h-screen">{children}</main>
-            <Toaster />
-            <Footer />
+          <NavBar />
+          <main className="min-h-screen">{children}</main>
+          <Toaster />
+          <Footer />
           {/* </LoginProvider> */}
         </ThemeProvider>
       </body>
