@@ -39,6 +39,26 @@ export default function VenueDetails({ params }: VenueProps) {
 
   return (
     <>
+      <div className="flex flex-row  gap-2 p-2 text-xs  dark:text-customWhite dark:text-opacity-50">
+        <Link
+          href="/"
+          className=" justify-start hover:text-opacity-100 hover:underline hover:underline-offset-2 dark:hover:text-customWhite"
+        >
+          Home &gt;
+        </Link>
+        <Link
+          href="/venues"
+          className="justify-start hover:text-opacity-100 hover:underline  hover:underline-offset-2 dark:hover:text-customWhite"
+        >
+          All Venues &gt;
+        </Link>
+        <Link
+          href="/profile"
+          className="justify-start hover:text-opacity-100 hover:underline hover:underline-offset-2 dark:hover:text-customWhite"
+        >
+          Profile &gt;
+        </Link>
+      </div>
       <Container>
         <div className="flex h-auto w-full items-center p-4 py-10 font-bold">
           <div className="relative flex flex-col items-center justify-center font-bodoni">
@@ -65,7 +85,7 @@ export default function VenueDetails({ params }: VenueProps) {
           </svg>
         </div>
         <section className="mx-auto flex flex-col-reverse items-center justify-center gap-2 text-wrap text-justify lg:flex-row ">
-          <div className=" relative flex w-full flex-col items-center gap-3 border-8 border-customBlack bg-background p-4 font-libre text-base text-customBlack dark:text-darkText lg:h-96 lg:w-96">
+          <div className=" relative flex w-full flex-col items-center gap-3 border-8 border-customBlack bg-background p-4 font-libre text-base text-customBlack dark:border-customWhite dark:text-darkText lg:h-96 lg:w-96">
             <div className="flex h-full w-full flex-col items-center justify-center gap-2 overflow-hidden bg-background lg:w-[25rem] lg:border-2 lg:border-background">
               <h2 className="w-2/3 truncate font-bold md:p-6 md:text-lg lg:p-7 lg:text-xl xl:p-10 xl:text-4xl">
                 {venue?.location?.city},
@@ -177,7 +197,7 @@ export default function VenueDetails({ params }: VenueProps) {
             </svg>
           </div>
 
-          <div className="flex h-full w-52 cursor-default flex-col items-start justify-center overflow-hidden border-r-8 border-customBlack md:w-1/5">
+          <div className="flex h-full w-52 cursor-default flex-col items-start justify-center overflow-hidden border-r-8 border-customBlack dark:border-customWhite md:w-1/5">
             <p className="inline-flex items-center justify-center gap-6 truncate duration-300 ">
               <BsHouse className="" />
               {venue?.name}
@@ -192,7 +212,7 @@ export default function VenueDetails({ params }: VenueProps) {
             </span>
           </div>
 
-          <div className="flex h-full w-52 cursor-default flex-col items-start justify-center overflow-hidden border-r-8 border-customBlack md:w-1/5">
+          <div className="flex h-full w-52 cursor-default flex-col items-start justify-center overflow-hidden border-r-8 border-customBlack dark:border-customWhite md:w-1/5">
             {venue?.meta?.wifi ? (
               <p className="flex flex-row items-center justify-center gap-6 duration-300  ">
                 <CiWifiOn /> Wifi: Yes
@@ -230,14 +250,14 @@ export default function VenueDetails({ params }: VenueProps) {
               </p>
             )}
           </div>
-          <div className="line-clamp-1  flex h-full w-52 cursor-default flex-col items-start justify-center overflow-hidden border-r-8 border-customBlack md:w-1/4">
+          <div className="line-clamp-1 flex h-full w-52 cursor-default flex-col items-start justify-center overflow-hidden border-r-8 border-customBlack dark:border-customWhite md:w-1/4">
             {venue?.location?.address ? (
               <p className="inline-flex items-center gap-6 overflow-y-auto overscroll-contain truncate break-normal duration-300 ">
                 <IoLocationOutline />
                 {venue?.location?.address}
               </p>
             ) : (
-              <p className="inline-flex items-center gap-6 truncate break-normal duration-300 ">
+              <p className="inline-flex items-center gap-6 truncate break-normal italic duration-300">
                 <IoLocationOutline />
                 Address: Not Available
               </p>
@@ -248,7 +268,7 @@ export default function VenueDetails({ params }: VenueProps) {
                 {venue?.location?.city}
               </p>
             ) : (
-              <p className="inline-flex items-center gap-6 duration-300 ">
+              <p className="inline-flex items-center gap-6 italic duration-300">
                 <LiaCitySolid />
                 City: Not Available
               </p>
@@ -259,7 +279,7 @@ export default function VenueDetails({ params }: VenueProps) {
                 {venue?.location?.continent}
               </p>
             ) : (
-              <p className="inline-flex items-center gap-6 duration-300 ">
+              <p className="inline-flex items-center gap-6 italic duration-300">
                 <IoMdGlobe />
                 Not Available
               </p>

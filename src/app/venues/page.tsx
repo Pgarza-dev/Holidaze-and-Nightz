@@ -24,6 +24,20 @@ export default function Venues() {
 
   return (
     <>
+      <div className="flex flex-row  gap-2 p-2 text-xs  dark:text-customWhite dark:text-opacity-50">
+        <Link
+          href="/"
+          className=" justify-start hover:text-opacity-100 hover:underline hover:underline-offset-2 dark:hover:text-customWhite"
+        >
+          Home &gt;
+        </Link>
+        <Link
+          href="/profile"
+          className="justify-start hover:text-opacity-100 hover:underline hover:underline-offset-2 dark:hover:text-customWhite"
+        >
+          Profile &gt;
+        </Link>
+      </div>
       <div className="h-full w-full p-4">
         <svg
           className="mx-auto flex items-center justify-center"
