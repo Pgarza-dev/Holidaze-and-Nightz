@@ -4,7 +4,7 @@ import Container from "./Container";
 function Footer() {
   return (
     <div className="h-full w-full py-10 font-bodoni">
-      <Container className="bg-customBlack ">
+      <Container className="max-w-full bg-customBlack">
         <footer className="h-ful flex w-full flex-col items-center justify-center gap-8 md:flex md:flex-row">
           <div className="flex h-40 w-28 flex-col items-center justify-center border-r-8 border-l-darkText border-r-darkText px-10 uppercase text-background dark:text-darkText md:w-fit md:border-l-8">
             <p className="">address</p>
