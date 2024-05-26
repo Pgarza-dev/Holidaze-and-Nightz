@@ -194,10 +194,10 @@ export default function VenueDetails({ params }: VenueProps) {
               <BsHouse className="" />
               {venue?.name}
             </p>
-            <p className="inline-flex items-center justify-center gap-6 duration-300 ">
+            <span className="inline-flex items-center justify-center gap-6 duration-300 ">
               <IoPersonOutline />
               <p>Guests: {venue?.maxGuests}</p>
-            </p>
+            </span>
             <span className="flex flex-row items-center gap-6 duration-300 ">
               <IoMdStar />
               <p>Rated: {venue?.rating}</p>
@@ -242,9 +242,9 @@ export default function VenueDetails({ params }: VenueProps) {
               </p>
             )}
           </div>
-          <div className="flex h-full w-52 cursor-default flex-col items-start justify-center overflow-hidden border-r-8 border-customBlack md:w-1/4">
+          <div className="line-clamp-1  flex h-full w-52 cursor-default flex-col items-start justify-center overflow-hidden border-r-8 border-customBlack md:w-1/4">
             {venue?.location?.address ? (
-              <p className="inline-flex items-center gap-6 overflow-y-auto overscroll-contain truncate text-wrap break-normal duration-300 ">
+              <p className="inline-flex items-center gap-6 overflow-y-auto overscroll-contain truncate break-normal duration-300 ">
                 <IoLocationOutline />
                 {venue?.location?.address}
               </p>
@@ -255,7 +255,7 @@ export default function VenueDetails({ params }: VenueProps) {
               </p>
             )}
             {venue?.location?.city ? (
-              <p className="inline-flex items-center gap-6 duration-300 ">
+              <p className="inline-flex items-center gap-6 truncate break-all duration-300 ">
                 <LiaCitySolid />
                 {venue?.location?.city}
               </p>
