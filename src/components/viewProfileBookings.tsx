@@ -47,7 +47,7 @@ const DisplayUserBookings = ({ userBookings }: { userBookings: any[] }) => {
                         ),
                       )
                     ) : (
-                      <span className="italic">"Not rated yet"</span>
+                      <span className="italic">&quot;Not rated yet&quot;</span>
                     )}
                   </p>
                 )}

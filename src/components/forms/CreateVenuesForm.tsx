@@ -91,7 +91,7 @@ function CreateVenue({ accessToken }: { accessToken: string }) {
           title: "Venue Created",
           description: "You have successfully created a venue",
           duration: 3000,
-          variant: "default",
+          variant: "success",
           action: (
             <ToastAction altText="Venue created successfully">
               Close
@@ -149,9 +149,26 @@ function CreateVenue({ accessToken }: { accessToken: string }) {
 
   return (
     <Container className=" max-w-2xl font-libre">
-      <div className=" py-4">
-        <Link href="/profile" className="py-9 text-lg">
-          Back to Profile
+      <div className="flex flex-row items-center justify-end gap-4 pb-2">
+        <Link href="/">
+          <Button className="text-lg" variant="link" size="sm">
+            Home
+          </Button>
+        </Link>
+        <Link href="/venues">
+          <Button className="text-lg" variant="link" size="sm">
+            Venues
+          </Button>
+        </Link>
+        <Link href="/profile">
+          <Button className="text-lg" variant="link" size="sm">
+            Profile
+          </Button>
+        </Link>
+        <Link href="/editProfile">
+          <Button className="text-lg" variant="link" size="sm">
+            Edit Profile
+          </Button>
         </Link>
       </div>
       <div>
@@ -469,13 +486,15 @@ function CreateVenue({ accessToken }: { accessToken: string }) {
             />
             <div className="flex flex-row justify-between gap-4 pt-4">
               <Button
-                className="text-xl hover:bg-destructive"
+                className=" hover:bg-destructive"
                 onClick={ClearForm}
+                size="sm"
               >
                 Clear Form
               </Button>
               <Button
-                className="border border-customWhite bg-customWhite text-xl text-customBlack hover:border hover:border-customWhite hover:text-customWhite"
+                className=" bg-customWhite  text-customBlack hover:bg-green-600 hover:text-customWhite"
+                size="sm"
                 type="submit"
               >
                 Create Venue

@@ -4,9 +4,12 @@ import Container from "@/components/Container";
 import { Button } from "../ui/button";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { ToastAction } from "@/components/ui/toast";
+import { toast, useToast } from "@/components/ui/use-toast";
 
 export default function EditProfileForm() {
   const router = useRouter();
+  const { toast } = useToast();
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -18,11 +21,30 @@ export default function EditProfileForm() {
         body: formData,
       });
       const data = await response.json();
+      if (response.ok) {
+        toast({
+          title: "Profile Updated",
+          description: "You have successfully updated your profile",
+          duration: 3000,
+          variant: "success",
+          action: <ToastAction altText="Profile updated">Close</ToastAction>,
+        });
+      }
 
       router.push("/profile");
+      router.refresh();
       console.log(data);
     } catch (error) {
       console.log(error);
+      toast({
+        title: "Profile Update Failed",
+        description: "Please check your details and try again",
+        duration: 5000,
+        variant: "destructive",
+        action: (
+          <ToastAction altText="Profile update failed">Close</ToastAction>
+        ),
+      });
     }
   }
   return (

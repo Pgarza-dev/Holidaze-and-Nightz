@@ -4,7 +4,6 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import DisplayUserBookings from "@/components/viewProfileBookings";
 import DisplayUserVenues from "@/components/viewProfileVenues";
-import { API_VENUES } from "@/shared/ApiEndPoints";
 import { cookies } from "next/headers";
 import Image from "next/image";
 import Link from "next/link";
