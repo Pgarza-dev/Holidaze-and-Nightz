@@ -5,10 +5,9 @@ import { Button } from "@/components/ui/button";
 import useFetch from "@/lib/hooks/data";
 import { API_ALL_BOOKINGS, API_VENUES } from "@/shared/ApiEndPoints";
 import { addDays } from "date-fns";
-import Link from "next/link";
 import React from "react";
 import { DateRange } from "react-day-picker";
-import { FormEvent } from "react";
+import { useRouter } from "next/navigation";
 import { bookingFormSchema } from "@/app/forms/bookingFormSchema";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -16,7 +15,6 @@ import { date, z } from "zod";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -43,12 +41,11 @@ export default function BookingForm({
   venuesId: string;
   accessToken: string;
 }) {
+  const router = useRouter();
   const { toast } = useToast();
   const { data, isLoading, isError } = useFetch(
     API_VENUES + `/${venuesId}?_bookings=true`,
   );
-  //console.log(data);
-  // validated data schema here
 
   const form = useForm<z.infer<typeof bookingFormSchema>>({
     resolver: zodResolver(bookingFormSchema),
@@ -57,7 +54,6 @@ export default function BookingForm({
       children: "",
     },
   });
-  console.log(data);
 
   async function handleBooking(bookingData: {
     dateFrom: string;
@@ -84,7 +80,6 @@ export default function BookingForm({
           variant: "default",
           action: <ToastAction altText="Booking successful">Close</ToastAction>,
         });
-        console.log("Success:", data);
       } else {
         toast({
           title: "Oops something went wrong!",
@@ -95,13 +90,11 @@ export default function BookingForm({
             <ToastAction altText="Booking unsuccessful">Close</ToastAction>
           ),
         });
-        console.error("Failed:", data);
       }
     } catch (error) {
       console.error("Failed:", error);
     }
   }
-  console.log(accessToken);
 
   const [adults, setAdults] = React.useState(1);
   const [children, setChildren] = React.useState(0);
@@ -114,7 +107,13 @@ export default function BookingForm({
 
   function onSubmit(values: z.infer<typeof bookingFormSchema>) {
     if (!dateRange?.from || !dateRange?.to) {
-      alert("Please select a date range");
+      toast({
+        title: "Oops! You forgot to select a date.",
+        description: "Please select a date range",
+        duration: 6000,
+        variant: "destructive",
+        action: <ToastAction altText="Close">Close</ToastAction>,
+      });
       return;
     }
     const transformedValues = {
@@ -124,8 +123,7 @@ export default function BookingForm({
       venueId: venuesId,
     };
     handleBooking(transformedValues);
-
-    console.log(transformedValues);
+    router.push(`/profile`);
   }
 
   const bookedDates = React.useMemo(() => {
@@ -152,24 +150,21 @@ export default function BookingForm({
     dateTo: dateRange?.to?.toISOString() ?? "",
     guests: adults + children,
   };
-  console.log(bookingData);
 
   return (
-    <Container className="flex flex-col items-center justify-center">
+    <Container className="flex flex-col items-center justify-center gap-6 align-middle">
       <div className="relative flex flex-col items-center justify-center p-10 font-bodoni">
-        <h1 className="not-sr-only text-5xl uppercase text-customBlack text-opacity-10 md:text-7xl">
+        <h1 className="not-sr-only text-5xl uppercase text-customBlack text-opacity-10 dark:text-customWhite dark:opacity-20 md:text-7xl">
           Booking
         </h1>
-        <h2 className="absolute text-2xl uppercase text-customBlack dark:text-customWhite md:text-3xl">
+        <h2 className="absolute text-2xl uppercase text-customBlack dark:text-customWhite md:text-3xl lg:text-5xl">
           Booking
         </h2>
       </div>
       <div className=" font-libre text-lg md:text-3xl">
         <p>LETS GET YOU SITUATED FOR YOU STAY</p>
       </div>
-      <span className="text-red-500">
-        {/* Maximum guest: {data?.data?.maxGuests} */}
-      </span>
+
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
@@ -185,13 +180,12 @@ export default function BookingForm({
               }}
             />
             {!isValid && (
-              <p className="rounded-md border-2 border-red-500 p-1 text-xl text-red-500">
+              <p className="rounded-md border-2 border-red-500 bg-red-500 p-1 text-xl text-customWhite">
                 Oops! One or more of your selected days is already fully booked.
                 Please select another. 😊
               </p>
             )}
           </div>
-
           <FormField
             control={form.control}
             name="adults"
@@ -231,30 +225,6 @@ export default function BookingForm({
           </Button>
         </form>
       </Form>
-      {/* 
-          <div className="flex flex-row justify-center gap-6">
-            <div className="flex flex-row items-center gap-2 border-b-2 border-customBlack font-libre">
-              <p className="text-lg uppercase md:text-2xl">adults</p>
-              <input
-                type="number"
-                className="h-10 w-10 rounded-md border-2 border-none bg-background ps-2 text-center text-lg text-customBlack md:text-2xl"
-                placeholder="1"
-              />
-            </div>
-            <div className="flex flex-row items-center justify-center gap-2 border-b-2 border-customBlack font-libre">
-              <p className="text-lg uppercase md:text-2xl">children</p>
-              <input
-                type="number"
-                className="h-10 w-10 rounded-md border-2 border-none bg-background ps-2 text-center text-lg text-customBlack md:text-2xl"
-                placeholder="0 "
-              />
-            </div>
-          </div>
-          <Button type="submit" className="w-full font-libre text-2xl">
-            Book
-          </Button>
-        </form>
-      </Form> */}
     </Container>
   );
 }

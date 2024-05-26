@@ -19,8 +19,6 @@ function Booking({ params: { venuesId } }: BookingProps) {
     return redirect("/login");
   }
 
-  console.log(venuesId);
-
   return <BookingForm venuesId={venuesId} accessToken={accessToken} />;
 }
 
