@@ -24,6 +24,7 @@ import { Input } from "@/components/ui/input";
 import { Venue } from "@/shared/types/venue";
 import { ToastAction } from "@/components/ui/toast";
 import { useToast } from "@/components/ui/use-toast";
+import Link from "next/link";
 
 type Booking = {
   id: string;
@@ -152,79 +153,109 @@ export default function BookingForm({
   };
 
   return (
-    <Container className="flex flex-col items-center justify-center gap-6 align-middle">
-      <div className="relative flex flex-col items-center justify-center p-10 font-bodoni">
-        <h1 className="not-sr-only text-5xl uppercase text-customBlack text-opacity-10 dark:text-customWhite dark:opacity-20 md:text-7xl">
-          Booking
-        </h1>
-        <h2 className="absolute text-2xl uppercase text-customBlack dark:text-customWhite md:text-3xl lg:text-5xl">
-          Booking
-        </h2>
-      </div>
-      <div className=" font-libre text-lg md:text-3xl">
-        <p>LETS GET YOU SITUATED FOR YOU STAY</p>
-      </div>
-
-      <Form {...form}>
-        <form
-          onSubmit={form.handleSubmit(onSubmit)}
-          className=" flex flex-col gap-4"
+    <>
+      <div className="flex flex-row  gap-2 p-2 text-xs  dark:text-customWhite dark:text-opacity-50">
+        <Link
+          href="/"
+          className=" justify-start hover:text-customWhite hover:text-opacity-100 hover:underline hover:underline-offset-2"
         >
-          <div className="flex flex-col items-center justify-center gap-2 font-libre">
-            <p className="text-lg md:text-2xl">Arrival / Departure</p>
-            <DatePickerWithRange
-              disabledDates={bookedDates}
-              onSelected={(selected) => {
-                setDateRange(selected.range);
-                setIsValid(selected.isValid);
-              }}
+          Home &gt;
+        </Link>
+        <Link
+          href="/venues"
+          className="justify-start hover:text-customWhite hover:text-opacity-100  hover:underline hover:underline-offset-2"
+        >
+          All Venues &gt;
+        </Link>
+        <Link
+          href={`/venues/${venuesId}`}
+          className="justify-start hover:text-customWhite hover:text-opacity-100 hover:underline hover:underline-offset-2"
+        >
+          Previous Venue &gt;
+        </Link>
+        <Link
+          href="/profile"
+          className="justify-start hover:text-customWhite hover:text-opacity-100 hover:underline hover:underline-offset-2"
+        >
+          Profile &gt;
+        </Link>
+      </div>
+      <Container className="flex flex-col items-center justify-center gap-6 align-middle">
+        <div className="relative flex flex-col items-center justify-center p-10 font-bodoni">
+          <h1 className="not-sr-only text-5xl uppercase text-customBlack text-opacity-10 dark:text-customWhite dark:opacity-20 md:text-7xl">
+            Booking
+          </h1>
+          <h2 className="absolute text-2xl uppercase text-customBlack dark:text-customWhite md:text-3xl lg:text-5xl">
+            Booking
+          </h2>
+        </div>
+        <div className=" font-libre text-lg md:text-3xl">
+          <p>LETS GET YOU SITUATED FOR YOU STAY</p>
+        </div>
+
+        <Form {...form}>
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className=" flex flex-col gap-4"
+          >
+            <div className="flex flex-col items-center justify-center gap-2 font-libre">
+              <p className="text-lg md:text-2xl">Arrival / Departure</p>
+              <DatePickerWithRange
+                disabledDates={bookedDates}
+                onSelected={(selected) => {
+                  setDateRange(selected.range);
+                  setIsValid(selected.isValid);
+                }}
+              />
+              {!isValid && (
+                <p className="rounded-md border-2 border-red-500 bg-red-500 p-1 text-xl text-customWhite">
+                  Oops! One or more of your selected days is already fully
+                  booked. Please select another. 😊
+                </p>
+              )}
+            </div>
+            <FormField
+              control={form.control}
+              name="adults"
+              render={({ field }) => (
+                <FormItem className="flex flex-row items-center justify-between gap-2 border-b-2 border-customBlack font-libre">
+                  <FormLabel className="text-lg md:text-2xl">Adults</FormLabel>
+                  <FormControl>
+                    <Input
+                      className="h-10 w-10 rounded-md border-2 border-none bg-background ps-2 text-center text-lg text-customBlack dark:text-customWhite md:text-2xl"
+                      placeholder="1"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
             />
-            {!isValid && (
-              <p className="rounded-md border-2 border-red-500 bg-red-500 p-1 text-xl text-customWhite">
-                Oops! One or more of your selected days is already fully booked.
-                Please select another. 😊
-              </p>
-            )}
-          </div>
-          <FormField
-            control={form.control}
-            name="adults"
-            render={({ field }) => (
-              <FormItem className="flex flex-row items-center justify-between gap-2 border-b-2 border-customBlack font-libre">
-                <FormLabel className="text-lg md:text-2xl">Adults</FormLabel>
-                <FormControl>
-                  <Input
-                    className="h-10 w-10 rounded-md border-2 border-none bg-background ps-2 text-center text-lg text-customBlack md:text-2xl"
-                    placeholder="1"
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="children"
-            render={({ field }) => (
-              <FormItem className="flex flex-row items-center justify-between gap-2 border-b-2 border-customBlack font-libre">
-                <FormLabel className="text-lg md:text-2xl">Children</FormLabel>
-                <FormControl>
-                  <Input
-                    className="h-10 w-10 rounded-md border-2 border-none bg-background ps-2 text-center text-lg text-customBlack md:text-2xl"
-                    placeholder="0"
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <Button type="submit" className="w-full font-libre text-2xl">
-            Book
-          </Button>
-        </form>
-      </Form>
-    </Container>
+            <FormField
+              control={form.control}
+              name="children"
+              render={({ field }) => (
+                <FormItem className="flex flex-row items-center justify-between gap-2 border-b-2 border-customBlack font-libre">
+                  <FormLabel className="text-lg md:text-2xl">
+                    Children
+                  </FormLabel>
+                  <FormControl>
+                    <Input
+                      className="h-10 w-10 rounded-md border-2 border-none bg-background ps-2 text-center text-lg text-customBlack dark:text-customWhite md:text-2xl"
+                      placeholder="0"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <Button type="submit" className="w-full font-libre text-2xl">
+              Book
+            </Button>
+          </form>
+        </Form>
+      </Container>
+    </>
   );
 }
