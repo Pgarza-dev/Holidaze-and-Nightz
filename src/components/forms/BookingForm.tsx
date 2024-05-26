@@ -45,18 +45,7 @@ export default function BookingForm({
   const { data, isLoading, isError } = useFetch(
     API_VENUES + `/${venuesId}?_bookings=true`,
   );
-  if (isLoading) {
-    return (
-      <div className="flex min-h-screen flex-col items-center justify-center">
-        <span className="loader "></span>
-        <span>Loading</span>
-      </div>
-    );
-  }
-
-  if (isError) {
-    return <span>Oops, something is wrong!</span>;
-  }
+  console.log(data);
   const router = useRouter();
   const { toast } = useToast();
 
@@ -85,6 +74,7 @@ export default function BookingForm({
         body: JSON.stringify(bookingData),
       });
       const data = await response.json();
+      console.log(data);
       if (response.ok) {
         toast({
           title: "Booking Successful",
@@ -169,25 +159,25 @@ export default function BookingForm({
       <div className="flex flex-row  gap-2 p-2 text-xs  dark:text-customWhite dark:text-opacity-50">
         <Link
           href="/"
-          className=" justify-start hover:text-customWhite hover:text-opacity-100 hover:underline hover:underline-offset-2"
+          className=" justify-start hover:text-opacity-100 hover:underline hover:underline-offset-2 dark:hover:text-customWhite"
         >
           Home &gt;
         </Link>
         <Link
           href="/venues"
-          className="justify-start hover:text-customWhite hover:text-opacity-100  hover:underline hover:underline-offset-2"
+          className="justify-start hover:text-opacity-100 hover:underline  hover:underline-offset-2 dark:hover:text-customWhite"
         >
           All Venues &gt;
         </Link>
         <Link
           href={`/venues/${venuesId}`}
-          className="justify-start hover:text-customWhite hover:text-opacity-100 hover:underline hover:underline-offset-2"
+          className="justify-start hover:text-opacity-100 hover:underline hover:underline-offset-2 dark:hover:text-customWhite"
         >
           Previous Venue &gt;
         </Link>
         <Link
           href="/profile"
-          className="justify-start hover:text-customWhite hover:text-opacity-100 hover:underline hover:underline-offset-2"
+          className="justify-start hover:text-opacity-100 hover:underline hover:underline-offset-2 dark:hover:text-customWhite"
         >
           Profile &gt;
         </Link>
