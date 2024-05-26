@@ -66,9 +66,9 @@ function DeleteVenueButton({ venueId, accessToken }: VenueProps) {
   return (
     <Popover>
       <PopoverTrigger className="pe-2">
-        <Button variant="destructive" size="sm">
+        <span className="rounded-md bg-red-500 dark:bg-red-800 px-4 py-[6px] text-sm text-customWhite  ">
           Delete
-        </Button>
+        </span>
       </PopoverTrigger>
       <PopoverContent className="flex flex-col">
         <span className="text-sm">

@@ -28,7 +28,7 @@ const DisplayUserVenues = ({ userVenues, accessToken }: Props) => {
         {userVenues.map((venue) => (
           <>
             <Link key={venue.id} href={`venues/${venue.id}`}>
-              <div className="bg-customBlackWhite border-2-customBlack mb-2 flex h-full w-full cursor-pointer flex-row justify-evenly gap-4 rounded-lg bg-customBlack p-4 text-customWhite transition-colors duration-700 hover:bg-customWhite hover:text-customBlack hover:shadow-lg">
+              <div className="bg-customBlackWhite border-2-customBlack flex h-full w-full cursor-pointer flex-row justify-evenly gap-4 rounded-lg bg-customBlack p-4 text-customWhite transition-colors duration-700 hover:bg-customWhite hover:text-customBlack hover:shadow-lg">
                 <div>
                   <Image
                     width={150}
@@ -49,8 +49,10 @@ const DisplayUserVenues = ({ userVenues, accessToken }: Props) => {
                 </div>
               </div>
             </Link>
-            <DeleteVenueButton venueId={venue.id} accessToken={accessToken} />
-            <EditVenueButton accessToken={accessToken} venueId={venue.id} />
+            <div className="flex flex-row">
+              <DeleteVenueButton venueId={venue.id} accessToken={accessToken} />
+              <EditVenueButton accessToken={accessToken} venueId={venue.id} />
+            </div>
           </>
         ))}
       </div>

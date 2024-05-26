@@ -52,14 +52,7 @@ export default function LoginForm() {
         console.log(data);
         router.push("/profile");
         router.refresh();
-      } else {
-        toast({
-          title: "Login Failed",
-          description: "Please check your email and password",
-          duration: 3000,
-          action: <ToastAction altText="Login failed">Close</ToastAction>,
-        });
-      }
+      } 
     } catch (error) {
       console.log(error);
       toast({
