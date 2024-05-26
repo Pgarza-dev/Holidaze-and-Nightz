@@ -12,7 +12,13 @@ import { BsFillPersonFill } from "react-icons/bs";
 export default function Venues() {
   const { data, isLoading, isError } = useFetch(API_VENUES);
 
-  if (isLoading) return <span className="loader"></span>;
+  if (isLoading)
+    return (
+      <div className="flex min-h-screen flex-col items-center justify-center">
+        <span className="loader "></span>
+        <span>Loading</span>
+      </div>
+    );
 
   if (isError) return <span>Oops, something is wrong!</span>;
 

@@ -24,7 +24,6 @@ import { IoPersonOutline } from "react-icons/io5";
 import { BsHouse } from "react-icons/bs";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import EditVenueButton from "@/components/EditVenueButton";
 
 type VenueProps = {
   params: { [key: string]: string | string[] | undefined };
@@ -35,10 +34,6 @@ export default function VenueDetails({ params }: VenueProps) {
   const venueId = params.venuesId as string;
   const { data, isLoading, isError } = useFetch(API_VENUES + `/${venueId}`);
   console.log(data);
-
-  if (isLoading) return <span className="loader"></span>;
-
-  if (isError) return <span>Oops, something is wrong!</span>;
 
   const venue: any = data?.data;
 
