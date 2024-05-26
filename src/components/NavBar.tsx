@@ -66,23 +66,6 @@ function NavBar() {
           >
             REGISTER
           </Link>
-
-          <div className="flex flex-row gap-4 pt-[65%] text-base uppercase text-darkText dark:text-darkText md:text-lg ">
-            <Link
-              href="/about"
-              onClick={toggleNavbar}
-              className="cursor-pointer opacity-50 hover:opacity-100"
-            >
-              about
-            </Link>
-            <Link
-              href="/contact"
-              onClick={toggleNavbar}
-              className="cursor-pointer opacity-50 hover:opacity-100"
-            >
-              Contact
-            </Link>
-          </div>
         </div>
       )}
     </div>
