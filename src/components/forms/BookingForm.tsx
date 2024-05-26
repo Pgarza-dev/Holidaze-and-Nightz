@@ -80,7 +80,7 @@ export default function BookingForm({
           title: "Booking Successful",
           description: "Your Venue booked successfully!",
           duration: 3000,
-          variant: "default",
+          variant: "success",
           action: <ToastAction altText="Booking successful">Close</ToastAction>,
         });
       } else {

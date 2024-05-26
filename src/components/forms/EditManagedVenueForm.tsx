@@ -148,8 +148,8 @@ function EditVenue({
   }
 
   return (
-    <div className=" font-libre">
-      <h1 className="p-4 text-center text-xl uppercase md:text-3xl">
+    <div className=" font-libre m-auto w-full">
+      <h1 className="p-4 text-center text-xl uppercase text-customWhite md:text-3xl">
         Edit Venue
       </h1>
       <div className="rounded-xl bg-customBlack p-4 text-customWhite">

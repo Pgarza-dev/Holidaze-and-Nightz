@@ -19,6 +19,7 @@ function EditVenueButton({ venueId, accessToken }: Props) {
     <>
       <Button
         variant="secondary"
+        className="dark:hover:bg-customWhite dark:hover:text-customBlack z-0"
         size="sm"
         onClick={handleClick}
       >

@@ -45,7 +45,7 @@ export default function LoginForm() {
           title: "Login Successful",
           description: "You have successfully logged in",
           duration: 3000,
-          variant: "default",
+          variant: "success",
           action: <ToastAction altText="Login successful">Close</ToastAction>,
         });
 

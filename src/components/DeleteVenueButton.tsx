@@ -5,6 +5,11 @@ import { API_VENUES } from "@/shared/ApiEndPoints";
 import { useRouter } from "next/navigation";
 import { ToastAction } from "@/components/ui/toast";
 import { useToast } from "@/components/ui/use-toast";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 
 type VenueProps = {
   venueId: string;
@@ -59,14 +64,26 @@ function DeleteVenueButton({ venueId, accessToken }: VenueProps) {
   };
 
   return (
-    <Button
-      onClick={handleDelete}
-      type="submit"
-      variant="destructive"
-      size="sm"
-    >
-      Delete Venue
-    </Button>
+    <Popover>
+      <PopoverTrigger className="pe-2">
+        <Button variant="destructive" size="sm">
+          Delete
+        </Button>
+      </PopoverTrigger>
+      <PopoverContent className="flex flex-col">
+        <span className="text-sm">
+          Are you sure you want to delete this venue?
+        </span>
+        <Button
+          onClick={handleDelete}
+          type="submit"
+          variant="destructive"
+          size="sm"
+        >
+          Delete Venue
+        </Button>
+      </PopoverContent>
+    </Popover>
   );
 }
 
