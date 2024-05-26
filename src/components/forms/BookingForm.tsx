@@ -42,11 +42,23 @@ export default function BookingForm({
   venuesId: string;
   accessToken: string;
 }) {
-  const router = useRouter();
-  const { toast } = useToast();
   const { data, isLoading, isError } = useFetch(
     API_VENUES + `/${venuesId}?_bookings=true`,
   );
+  if (isLoading) {
+    return (
+      <div className="flex min-h-screen flex-col items-center justify-center">
+        <span className="loader "></span>
+        <span>Loading</span>
+      </div>
+    );
+  }
+
+  if (isError) {
+    return <span>Oops, something is wrong!</span>;
+  }
+  const router = useRouter();
+  const { toast } = useToast();
 
   const form = useForm<z.infer<typeof bookingFormSchema>>({
     resolver: zodResolver(bookingFormSchema),
@@ -120,7 +132,7 @@ export default function BookingForm({
     const transformedValues = {
       dateFrom: dateRange.from.toISOString(),
       dateTo: dateRange.to.toISOString(),
-      guests: Number(values.adults) + Number(values.children), // Convert guests to number
+      guests: Number(values.adults) + Number(values.children),
       venueId: venuesId,
     };
     handleBooking(transformedValues);

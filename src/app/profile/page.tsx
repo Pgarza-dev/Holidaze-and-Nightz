@@ -1,5 +1,4 @@
 import Container from "@/components/Container";
-import DeleteVenueButton from "@/components/DeleteVenueButton";
 import LogoutButton from "@/components/LogoutButton";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";

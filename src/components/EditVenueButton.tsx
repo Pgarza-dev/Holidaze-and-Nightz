@@ -18,14 +18,15 @@ function EditVenueButton({ venueId, accessToken }: Props) {
   return (
     <>
       <Button
+        variant="secondary"
+        size="sm"
         onClick={handleClick}
-        className=" hover:bg-customWhite hover:text-customBlack"
       >
         Edit Venue
       </Button>
 
       {isClicked && (
-      <EditManagedVenueForm venueId={venueId} accessToken={accessToken} />
+        <EditManagedVenueForm venueId={venueId} accessToken={accessToken} />
       )}
     </>
   );

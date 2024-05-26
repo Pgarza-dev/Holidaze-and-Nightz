@@ -13,18 +13,22 @@ type Props = {
 const DisplayUserVenues = ({ userVenues, accessToken }: Props) => {
   return (
     <>
-      <div className="py-2">
+      <div className="py-3">
         <Link href="/createVenue">
-          <Button className=" hover:bg-customWhite hover:text-customBlack">
+          <Button
+            variant="default"
+            size="sm"
+            className="hover:bg-customWhite hover:text-customBlack"
+          >
             Create Venue
           </Button>
         </Link>
       </div>
-      <div className="flex w-full flex-col gap-4 rounded-lg border-2 border-background p-2 duration-500 hover:border-customBlack hover:shadow-md">
+      <div className="flex w-full flex-col rounded-lg p-2 duration-700 hover:shadow-md hover:ring-1 hover:ring-customBlack">
         {userVenues.map((venue) => (
-          <>
+          <div className="group">
             <Link href={`venues/${venue.id}`} key={venue.id}>
-              <div className="bg-customBlackWhite border-2-customBlack flex h-full w-full cursor-pointer flex-row justify-evenly gap-4 rounded-lg bg-customBlack p-4 text-customWhite transition-colors duration-700 hover:bg-customWhite hover:text-customBlack hover:shadow-lg ">
+              <div className="bg-customBlackWhite border-2-customBlack flex h-full w-full cursor-pointer flex-row justify-evenly gap-4 rounded-t-lg bg-customBlack p-4 text-customWhite transition-colors duration-700 hover:text-customBlack hover:shadow-lg group-hover:bg-customWhite ">
                 <div>
                   <Image
                     width={150}
@@ -45,10 +49,11 @@ const DisplayUserVenues = ({ userVenues, accessToken }: Props) => {
                 </div>
               </div>
             </Link>
-
-            <DeleteVenueButton venueId={venue.id} accessToken={accessToken} />
-            <EditVenueButton accessToken={accessToken} venueId={venue.id} />
-          </>
+            <div className="flex flex-row items-center gap-4 rounded-b-lg bg-customBlack p-2">
+              <DeleteVenueButton venueId={venue.id} accessToken={accessToken} />
+              <EditVenueButton accessToken={accessToken} venueId={venue.id} />
+            </div>
+          </div>
         ))}
       </div>
     </>

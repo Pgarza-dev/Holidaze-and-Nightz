@@ -8,7 +8,10 @@ type LogoutButtonProps = {
   username: string;
 };
 
-export default function LogoutButton({ accessToken, username }: LogoutButtonProps) {
+export default function LogoutButton({
+  accessToken,
+  username,
+}: LogoutButtonProps) {
   const handleLogout = async () => {
     try {
       const response = await fetch("/api/logout", {
@@ -27,15 +30,20 @@ export default function LogoutButton({ accessToken, username }: LogoutButtonProp
     }
   };
 
-  // if (!accessToken)
-  //   return (
-  //     <Link href="/login">
-  //       <Button>Login</Button>
-  //     </Link>
-  //   );
+  if (!accessToken || !username)
+    return (
+      <Link href="/login">
+        <Button>Login</Button>
+      </Link>
+    );
 
   return (
-    <Button onClick={handleLogout} variant="destructive">
+    <Button
+      onClick={handleLogout}
+      variant="destructive"
+      size="sm"
+      className="text-lg"
+    >
       Logout
     </Button>
   );
