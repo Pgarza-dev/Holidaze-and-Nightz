@@ -75,20 +75,19 @@ export default function VenueDetails({ params }: VenueProps) {
               <h2 className="w-2/3 truncate font-bold md:p-6 md:text-lg lg:p-7 lg:text-xl xl:p-10 xl:text-4xl">
                 {venue?.location?.city},
               </h2>
-              <h2 className="w-full truncate break-all">
+              <h2 className="h-10 w-full truncate break-normal">
                 {venue?.location?.country}
               </h2>
-              <p className="w-full truncate break-all text-base font-bold md:text-lg lg:text-xl xl:text-2xl">
+              <p className="h-10 w-full truncate break-normal text-base font-bold md:text-lg lg:text-xl xl:text-2xl">
                 {venue?.name}
               </p>
-              <p className="overflow-y-auto overscroll-contain break-all px-8 pb-6 text-base xl:text-lg">
+              <p className="overflow-y-auto overscroll-contain break-normal px-2 pb-6 text-base xl:text-lg">
                 {venue?.description}
               </p>
               <Button className="border-2 bg-customBlack text-2xl text-customWhite duration-300 hover:ring-2 hover:ring-customBlack hover:dark:bg-customWhite hover:dark:text-customBlack">
                 <Link href={`/venues/${venueId}/bookings`}>Book</Link>
               </Button>
             </div>
-            {/* <EditVenueButton editVenues={data?.data.venues} /> */}
           </div>
           <Carousel
             opts={{
