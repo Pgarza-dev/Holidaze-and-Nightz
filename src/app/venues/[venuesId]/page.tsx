@@ -47,10 +47,10 @@ export default function VenueDetails({ params }: VenueProps) {
       <Container>
         <div className="flex h-auto w-full items-center p-4 py-10 font-bold">
           <div className="relative flex flex-col items-center justify-center font-bodoni">
-            <h1 className="not-sr-only text-3xl uppercase text-customBlack text-opacity-10 md:text-5xl lg:text-7xl">
+            <h1 className="not-sr-only text-3xl uppercase text-customBlack text-opacity-10 dark:text-customWhite dark:text-opacity-20 md:text-5xl lg:text-7xl">
               location
             </h1>
-            <h2 className="absolute uppercase text-customBlack sm:text-2xl lg:text-3xl">
+            <h2 className="absolute uppercase text-customBlack dark:text-customWhite sm:text-3xl lg:text-5xl">
               location
             </h2>
           </div>
@@ -65,18 +65,25 @@ export default function VenueDetails({ params }: VenueProps) {
               d="M94.3536 4.35355C94.5488 4.15829 94.5488 3.84171 94.3536 3.64645L91.1716 0.464466C90.9763 0.269204 90.6597 0.269204 90.4645 0.464466C90.2692 0.659728 90.2692 0.976311 90.4645 1.17157L93.2929 4L90.4645 6.82843C90.2692 7.02369 90.2692 7.34027 90.4645 7.53553C90.6597 7.7308 90.9763 7.7308 91.1716 7.53553L94.3536 4.35355ZM0 4.5H94V3.5H0V4.5Z"
               fill="#212121"
               fillOpacity="0.8"
+              className="dark:fill-customWhite"
             />
           </svg>
         </div>
-        <section className="mx-auto flex flex-col-reverse items-center justify-center gap-2 lg:flex-row">
+        <section className="mx-auto flex flex-col-reverse items-center justify-center gap-2 text-wrap text-justify lg:flex-row ">
           <div className=" relative flex w-full flex-col items-center gap-3 border-8 border-customBlack bg-background p-4 font-libre text-base text-customBlack dark:text-darkText lg:h-96 lg:w-96">
-            <div className="flex h-full w-full flex-col items-center justify-center gap-2 bg-background lg:w-[25rem] lg:border-2 lg:border-background">
-              <h2 className="font-bold md:p-6 md:text-lg lg:p-7 lg:text-xl xl:p-10 xl:text-4xl">
-                {venue?.location?.city}, {venue?.location?.country}
+            <div className="flex h-full w-full flex-col items-center justify-center gap-2 overflow-hidden bg-background lg:w-[25rem] lg:border-2 lg:border-background">
+              <h2 className="w-2/3 truncate font-bold md:p-6 md:text-lg lg:p-7 lg:text-xl xl:p-10 xl:text-4xl">
+                {venue?.location?.city},
               </h2>
-              <p className=" overflow-y-auto overscroll-contain px-8 pb-6 text-base xl:text-lg">
+              <h2 className="w-full truncate break-all">
+                {venue?.location?.country}
+              </h2>
+              <p className="w-full truncate break-all text-base font-bold md:text-lg lg:text-xl xl:text-2xl">
+                {venue?.name}
+              </p>
+              <p className="overflow-y-auto overscroll-contain break-all px-8 pb-6 text-base xl:text-lg">
                 {venue?.description}
-              </p>{" "}
+              </p>
               <Button className="border-2 bg-customBlack text-2xl text-customWhite duration-300 hover:ring-2 hover:ring-customBlack hover:dark:bg-customWhite hover:dark:text-customBlack">
                 <Link href={`/venues/${venueId}/bookings`}>Book</Link>
               </Button>
@@ -87,7 +94,7 @@ export default function VenueDetails({ params }: VenueProps) {
             opts={{
               align: "center",
             }}
-            className="max-w-9xl w-full pb-5"
+            className="w-full max-w-4xl pb-5"
           >
             <CarouselContent className="">
               {venue?.media?.map((mediaItem: Media, index: number) => (
@@ -119,15 +126,16 @@ export default function VenueDetails({ params }: VenueProps) {
                       </Card>
                       <div className="flex flex-row justify-between border-customBlack p-4 font-libre text-base text-customBlack ">
                         <div className=" flex flex-col">
-                          <div className="inline-flex gap-2">
-                            <p className="">{venue?.location.city},</p>
-                            <p>{venue?.location.country}</p>
+                          <div className="max-w-96 gap-2">
+                            <p className="w-1/4 truncate dark:text-customWhite">
+                              {venue?.location.city},
+                            </p>
+                            <p className="w-1/4 truncate dark:text-customWhite">
+                              {venue?.location.country}
+                            </p>
                           </div>
-                          {/* <span className="cursor-pointer underline-offset-8 hover:underline">
-                          More →
-                        </span> */}
                         </div>
-                        <span className="">
+                        <span className="w-1/3 dark:text-customWhite">
                           {new Date(venue?.created).toISOString().split("T")[0]}
                         </span>
                       </div>
@@ -154,10 +162,11 @@ export default function VenueDetails({ params }: VenueProps) {
                 d="M0.00402832 1H46.004"
                 stroke="#212121"
                 strokeOpacity="0.8"
+                className="dark:stroke-customWhite"
               />
             </svg>
 
-            <p className="font-bold text-customBlack text-opacity-10 lg:text-3xl xl:text-6xl">
+            <p className="font-bold text-customBlack text-opacity-10 dark:text-customWhite dark:text-opacity-20 lg:text-3xl xl:text-6xl">
               amenities
             </p>
             <p className="absolute font-bold lg:text-lg xl:text-3xl">
@@ -175,20 +184,21 @@ export default function VenueDetails({ params }: VenueProps) {
                 d="M73.3576 4.35355C73.5528 4.15829 73.5528 3.84171 73.3576 3.64645L70.1756 0.464466C69.9803 0.269204 69.6638 0.269204 69.4685 0.464466C69.2732 0.659728 69.2732 0.976311 69.4685 1.17157L72.2969 4L69.4685 6.82843C69.2732 7.02369 69.2732 7.34027 69.4685 7.53553C69.6638 7.7308 69.9803 7.7308 70.1756 7.53553L73.3576 4.35355ZM0.00402832 4.5H73.004V3.5H0.00402832V4.5Z"
                 fill="#212121"
                 fillOpacity="0.8"
+                className="dark:fill-customWhite"
               />
             </svg>
           </div>
 
           <div className="flex h-full w-52 cursor-default flex-col items-start justify-center overflow-hidden border-r-8 border-customBlack md:w-1/5">
-            <p className="inline-flex items-center justify-center gap-6 duration-300 hover:text-xl">
+            <p className="inline-flex items-center justify-center gap-6 truncate duration-300 ">
               <BsHouse className="" />
               {venue?.name}
             </p>
-            <p className="inline-flex items-center justify-center gap-6 duration-300 hover:text-xl">
+            <p className="inline-flex items-center justify-center gap-6 duration-300 ">
               <IoPersonOutline />
               <p>Guests: {venue?.maxGuests}</p>
             </p>
-            <span className="flex flex-row items-center gap-6 duration-300 hover:text-xl">
+            <span className="flex flex-row items-center gap-6 duration-300 ">
               <IoMdStar />
               <p>Rated: {venue?.rating}</p>
             </span>
@@ -196,72 +206,72 @@ export default function VenueDetails({ params }: VenueProps) {
 
           <div className="flex h-full w-52 cursor-default flex-col items-start justify-center overflow-hidden border-r-8 border-customBlack md:w-1/5">
             {venue?.meta?.wifi ? (
-              <p className="flex flex-row items-center justify-center gap-6 duration-300 hover:text-xl ">
+              <p className="flex flex-row items-center justify-center gap-6 duration-300  ">
                 <CiWifiOn /> Wifi: Yes
               </p>
             ) : (
-              <p className="flex flex-row items-start gap-6 duration-300 hover:text-xl">
+              <p className="flex flex-row items-start gap-6 duration-300 ">
                 <CiWifiOn /> Wifi: No
               </p>
             )}
             {venue?.meta?.pets ? (
-              <p className="flex flex-row items-center justify-center gap-6 duration-300 hover:text-xl">
+              <p className="flex flex-row items-center justify-center gap-6 duration-300 ">
                 <MdPets /> Pets: Yes
               </p>
             ) : (
-              <p className="flex flex-row items-center justify-center gap-6 duration-300 hover:text-xl">
+              <p className="flex flex-row items-center justify-center gap-6 duration-300 ">
                 <MdPets /> Pets: No
               </p>
             )}
             {venue?.meta?.parking ? (
-              <p className="flex flex-row items-center justify-center gap-6 duration-300 hover:text-xl">
+              <p className="flex flex-row items-center justify-center gap-6 duration-300 ">
                 <CiParking1 /> Parking: Yes
               </p>
             ) : (
-              <p className="flex flex-row items-center justify-center gap-6 duration-300 hover:text-xl">
+              <p className="flex flex-row items-center justify-center gap-6 duration-300 ">
                 <CiParking1 /> Parking: No
               </p>
             )}
             {venue?.meta?.breakfast ? (
-              <p className="flex flex-row items-center justify-center gap-6 duration-300 hover:text-xl">
+              <p className="flex flex-row items-center justify-center gap-6 duration-300 ">
                 <MdOutlineFreeBreakfast /> Breakfast: Yes
               </p>
             ) : (
-              <p className="flex flex-row items-center justify-center gap-6 duration-300 hover:text-xl">
+              <p className="flex flex-row items-center justify-center gap-6 duration-300 ">
                 <MdOutlineFreeBreakfast /> Breakfast: No
               </p>
             )}
           </div>
           <div className="flex h-full w-52 cursor-default flex-col items-start justify-center overflow-hidden border-r-8 border-customBlack md:w-1/4">
             {venue?.location?.address ? (
-              <p className="inline-flex items-center gap-6 duration-300 hover:text-xl">
+              <p className="inline-flex items-center gap-6 overflow-y-auto overscroll-contain truncate text-wrap break-normal duration-300 ">
                 <IoLocationOutline />
-                Address: {venue?.location?.address}
+                {venue?.location?.address}
               </p>
             ) : (
-              <p className="inline-flex items-center gap-6 duration-300 hover:text-xl">
+              <p className="inline-flex items-center gap-6 truncate break-normal duration-300 ">
                 <IoLocationOutline />
                 Address: Not Available
               </p>
             )}
             {venue?.location?.city ? (
-              <p className="inline-flex items-center gap-6 duration-300 hover:text-xl">
+              <p className="inline-flex items-center gap-6 duration-300 ">
                 <LiaCitySolid />
-                City: {venue?.location?.city}
+                {venue?.location?.city}
               </p>
             ) : (
-              <p className="inline-flex items-center gap-6 duration-300 hover:text-xl">
+              <p className="inline-flex items-center gap-6 duration-300 ">
                 <LiaCitySolid />
                 City: Not Available
               </p>
             )}
             {venue?.location?.country ? (
-              <p className="inline-flex items-center gap-6 duration-300 hover:text-xl">
+              <p className="inline-flex items-center gap-6 truncate break-normal duration-300 ">
                 <IoMdGlobe />
                 {venue?.location?.continent}
               </p>
             ) : (
-              <p className="inline-flex items-center gap-6 duration-300 hover:text-xl">
+              <p className="inline-flex items-center gap-6 duration-300 ">
                 <IoMdGlobe />
                 Not Available
               </p>
