@@ -2,7 +2,7 @@ import React from "react";
 
 interface Props {
   children: React.ReactNode;
-  className?: string; //conditional prop
+  className?: string;
 }
 
 export default function Container({ children, className }: Props) {

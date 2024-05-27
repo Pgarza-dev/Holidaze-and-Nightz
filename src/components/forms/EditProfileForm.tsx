@@ -5,7 +5,7 @@ import { Button } from "../ui/button";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ToastAction } from "@/components/ui/toast";
-import { toast, useToast } from "@/components/ui/use-toast";
+import { useToast } from "@/components/ui/use-toast";
 
 export default function EditProfileForm() {
   const router = useRouter();
@@ -15,7 +15,6 @@ export default function EditProfileForm() {
     e.preventDefault();
     try {
       const formData = new FormData(e.currentTarget as HTMLFormElement);
-      console.log(formData);
       const response = await fetch("/api/editProfile", {
         method: "PUT",
         body: formData,
@@ -33,7 +32,6 @@ export default function EditProfileForm() {
 
       router.push("/profile");
       router.refresh();
-      console.log(data);
     } catch (error) {
       console.log(error);
       toast({

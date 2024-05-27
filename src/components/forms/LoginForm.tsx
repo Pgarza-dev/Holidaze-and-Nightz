@@ -5,7 +5,7 @@ import Container from "@/components/Container";
 import { Button } from "../ui/button";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { formSchema } from "@/app/forms/loginFormSchema";
+import { formSchema } from "@/app/formSchemas/loginFormSchema";
 import { ToastAction } from "@/components/ui/toast";
 import { useToast } from "@/components/ui/use-toast";
 
@@ -39,7 +39,6 @@ export default function LoginForm() {
         body: formData,
       });
       const data = await response.json();
-      console.log(data);
       if (response.ok) {
         toast({
           title: "Login Successful",
@@ -48,17 +47,15 @@ export default function LoginForm() {
           variant: "success",
           action: <ToastAction altText="Login successful">Close</ToastAction>,
         });
-
-        console.log(data);
         router.push("/profile");
         router.refresh();
-      } 
+      }
     } catch (error) {
       console.log(error);
       toast({
         title: "Login Failed",
         description: "Please check if your email and password are correct",
-        duration: 3000,
+        duration: 5000,
         action: <ToastAction altText="Login failed">Close</ToastAction>,
       });
     }

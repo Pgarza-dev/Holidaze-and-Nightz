@@ -47,8 +47,6 @@ function DeleteVenueButton({ venueId, accessToken }: VenueProps) {
             </ToastAction>
           ),
         });
-
-        console.log("Venue deleted");
         router.refresh();
       }
     } catch (error) {
@@ -56,7 +54,7 @@ function DeleteVenueButton({ venueId, accessToken }: VenueProps) {
       toast({
         title: "Error",
         description: "Something went wrong",
-        duration: 3000,
+        duration: 5000,
         variant: "destructive",
         action: <ToastAction altText="Error">Close</ToastAction>,
       });
@@ -66,7 +64,7 @@ function DeleteVenueButton({ venueId, accessToken }: VenueProps) {
   return (
     <Popover>
       <PopoverTrigger className="pe-2">
-        <span className="rounded-md bg-red-500 dark:bg-red-800 px-4 py-[6px] text-sm text-customWhite  ">
+        <span className="rounded-md bg-red-500 px-4 py-[6px] text-sm text-customWhite dark:bg-red-800  ">
           Delete
         </span>
       </PopoverTrigger>

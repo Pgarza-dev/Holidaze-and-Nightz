@@ -21,9 +21,6 @@ export async function PUT(req: NextRequest) {
     };
 
     const saveResult = removeUndefinedAndEmpty(transformedForm);
-    console.log(saveResult);
-    console.log(transformedForm);
-    console.log(form);
     const username = cookies().get("username")?.value;
     const accessToken = cookies().get("accessToken")?.value;
     const api_key = process.env.NEXT_PUBLIC_NOROFF_API_KEY;
@@ -41,11 +38,8 @@ export async function PUT(req: NextRequest) {
       },
     );
     const data = await response.json();
-    console.log(data);
 
     if (response.ok) {
-      console.log(data);
-
       revalidatePath("/profile");
 
       return new Response(JSON.stringify({ data }), {
