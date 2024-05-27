@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect } from "react";
 import { API_VENUES } from "@/shared/ApiEndPoints";
-import { createVenueSchema } from "@/app/forms/createVenueScheme";
+import { createVenueSchema } from "@/app/formSchemas/createVenueScheme";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -84,8 +84,6 @@ function CreateVenue({ accessToken }: { accessToken: string }) {
         body: JSON.stringify(formData),
       });
       const data = await response.json();
-      console.log(data);
-      console.log(formData);
       if (response.ok) {
         toast({
           title: "Venue Created",
@@ -98,13 +96,12 @@ function CreateVenue({ accessToken }: { accessToken: string }) {
             </ToastAction>
           ),
         });
-        console.log("Success:", data);
       }
     } catch (error) {
       toast({
         title: "Venue Creation Failed",
         description: "Please check your form and try again",
-        duration: 3000,
+        duration: 5000,
         variant: "destructive",
         action: (
           <ToastAction altText="Venue creation failed">Close</ToastAction>
@@ -136,12 +133,9 @@ function CreateVenue({ accessToken }: { accessToken: string }) {
       rating: Number(values.rating),
     };
     handleCreateVenue(formData);
-    console.log(formData);
   }
 
-  useEffect(() => {
-    console.log(form.formState.errors);
-  }, [form.formState.errors]);
+  useEffect(() => {}, [form.formState.errors]);
 
   function ClearForm() {
     form.reset();

@@ -1,4 +1,3 @@
-import useFetch from "@/lib/hooks/data";
 import { API_VENUES } from "@/shared/ApiEndPoints";
 import Image from "next/image";
 import Link from "next/link";
@@ -89,7 +88,6 @@ function SearchBar() {
                 height={50}
                 className="max-h-12 rounded-lg object-cover"
               />
-
               <span className="truncate">{venue?.name}</span>
             </div>
           </Link>

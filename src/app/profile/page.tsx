@@ -31,11 +31,9 @@ async function ProfilePage() {
       );
       if (!response.ok) {
         throw new Error("Network response was not ok");
-      } else {
-        console.log(response);
       }
+
       const data = await response.json();
-      console.log(data);
 
       return data;
     } catch (error) {
@@ -44,7 +42,6 @@ async function ProfilePage() {
   };
 
   const data = await getData();
-  console.log(data);
   return (
     <div className="h-full w-full p-10 font-libre">
       <div className="flex flex-row items-center justify-end gap-4 pb-2">

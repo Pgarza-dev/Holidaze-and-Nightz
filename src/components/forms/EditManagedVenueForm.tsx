@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect } from "react";
 import { API_VENUES } from "@/shared/ApiEndPoints";
-import { editVenueScheme } from "@/app/forms/editVenueScheme";
+import { editVenueScheme } from "@/app/formSchemas/editVenueScheme";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -88,8 +88,6 @@ function EditVenue({
         body: JSON.stringify(formData),
       });
       const data = await response.json();
-      console.log(data);
-      console.log(formData);
       if (response.ok) {
         toast({
           title: "Venue Edited",
@@ -100,13 +98,12 @@ function EditVenue({
             <ToastAction altText="Venue edited successfully">Close</ToastAction>
           ),
         });
-        console.log("Success:", data);
       }
     } catch (error) {
       toast({
         title: "Venue Edit Failed",
         description: "Please check your form and try again",
-        duration: 3000,
+        duration: 5000,
         variant: "destructive",
         action: <ToastAction altText="Venue edit failed">Close</ToastAction>,
       });
@@ -136,19 +133,16 @@ function EditVenue({
       rating: Number(values.rating),
     };
     handleEditVenue(formData);
-    console.log(formData);
   }
 
-  useEffect(() => {
-    console.log(form.formState.errors);
-  }, [form.formState.errors]);
+  useEffect(() => {}, [form.formState.errors]);
 
   function ClearForm() {
     form.reset();
   }
 
   return (
-    <div className=" font-libre m-auto w-full">
+    <div className=" m-auto w-full font-libre">
       <h1 className="p-4 text-center text-xl uppercase text-customWhite md:text-3xl">
         Edit Venue
       </h1>

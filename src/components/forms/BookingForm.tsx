@@ -8,7 +8,7 @@ import { addDays } from "date-fns";
 import React from "react";
 import { DateRange } from "react-day-picker";
 import { useRouter } from "next/navigation";
-import { bookingFormSchema } from "@/app/forms/bookingFormSchema";
+import { bookingFormSchema } from "@/app/formSchemas/bookingFormSchema";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { date, z } from "zod";
@@ -45,7 +45,6 @@ export default function BookingForm({
   const { data, isLoading, isError } = useFetch(
     API_VENUES + `/${venuesId}?_bookings=true`,
   );
-  console.log(data);
   const router = useRouter();
   const { toast } = useToast();
 
@@ -74,7 +73,6 @@ export default function BookingForm({
         body: JSON.stringify(bookingData),
       });
       const data = await response.json();
-      console.log(data);
       if (response.ok) {
         toast({
           title: "Booking Successful",
@@ -83,19 +81,16 @@ export default function BookingForm({
           variant: "success",
           action: <ToastAction altText="Booking successful">Close</ToastAction>,
         });
-      } else {
-        toast({
-          title: "Oops something went wrong!",
-          description: "Please try again",
-          duration: 3000,
-          variant: "destructive",
-          action: (
-            <ToastAction altText="Booking unsuccessful">Close</ToastAction>
-          ),
-        });
       }
     } catch (error) {
       console.error("Failed:", error);
+      toast({
+        title: "Oops something went wrong!",
+        description: "Please try again",
+        duration: 3000,
+        variant: "destructive",
+        action: <ToastAction altText="Booking unsuccessful">Close</ToastAction>,
+      });
     }
   }
 
@@ -134,7 +129,6 @@ export default function BookingForm({
       const anyData: any = data;
       if (Array.isArray(anyData.data?.bookings)) {
         return anyData.data.bookings.reduce((acc: Date[], booking: Booking) => {
-          // Specify the type of 'acc' as 'Date[]'
           const start = new Date(booking.dateFrom);
           const end = new Date(booking.dateTo);
           while (start <= end) {

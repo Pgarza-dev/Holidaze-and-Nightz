@@ -33,7 +33,6 @@ type Media = { url: string; alt: string };
 export default function VenueDetails({ params }: VenueProps) {
   const venueId = params.venuesId as string;
   const { data, isLoading, isError } = useFetch(API_VENUES + `/${venueId}`);
-  console.log(data);
 
   const venue: any = data?.data;
 

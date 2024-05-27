@@ -5,7 +5,6 @@ import { ThemeToggle } from "./ThemeToggle";
 import { IoIosSearch } from "react-icons/io";
 import Container from "@/components/Container";
 import SearchBar from "@/components/SearchBar";
-import LogoutButton from "./LogoutButton";
 function NavBar() {
   const [isClicked, setisClicked] = useState(false);
 
