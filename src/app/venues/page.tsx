@@ -10,7 +10,7 @@ import { Venue } from "@/shared/types/venue";
 import { BsFillPersonFill } from "react-icons/bs";
 
 export default function Venues() {
-  const { data, isLoading, isError } = useFetch(API_VENUES);
+  const { data, isLoading, isError } = useFetch(API_VENUES + "?sort=created");
 
   if (isLoading)
     return (
