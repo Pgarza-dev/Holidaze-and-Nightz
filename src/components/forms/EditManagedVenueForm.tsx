@@ -19,6 +19,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import { useRouter } from "next/navigation";
 
 type EditVenueApi = {
   name: string;
@@ -52,6 +53,7 @@ function EditVenue({
   venueId: string;
 }) {
   const { toast } = useToast();
+  const router = useRouter();
 
   const form = useForm<z.infer<typeof editVenueScheme>>({
     resolver: zodResolver(editVenueScheme),
@@ -88,16 +90,19 @@ function EditVenue({
         body: JSON.stringify(formData),
       });
       const data = await response.json();
+      console.log(data);
       if (response.ok) {
         toast({
           title: "Venue Edited",
           description: "You have successfully edited a venue",
           duration: 3000,
-          variant: "default",
+          variant: "success",
           action: (
             <ToastAction altText="Venue edited successfully">Close</ToastAction>
           ),
         });
+        router.push("/profile");
+        router.refresh();
       }
     } catch (error) {
       toast({
