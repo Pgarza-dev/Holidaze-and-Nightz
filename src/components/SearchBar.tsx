@@ -85,7 +85,7 @@ function SearchBar() {
             onClick={handleLinkClick}
             className="text-base text-background hover:text-secondary dark:text-darkText"
           >
-            <div className="flex h-96 flex-row items-center justify-start gap-4">
+            <div className="flex flex-row items-center justify-start gap-4">
               <Image
                 src={venue?.media[0]?.url}
                 alt={venue?.name}
