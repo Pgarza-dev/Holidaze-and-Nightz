@@ -72,7 +72,7 @@ function SearchBar() {
         placeholder="Search for venues"
         autoComplete="on"
         onChange={handleSearch}
-        className=" hidden w-96 flex-1 rounded-lg border border-background bg-background p-2 text-foreground outline-none transition-all duration-300 ease-in-out placeholder:text-sm focus:border-primary dark:bg-customWhite dark:text-customBlack md:block"
+        className="flex w-96 flex-1 rounded-lg border border-background bg-background p-2 text-foreground outline-none transition-all duration-300 ease-in-out placeholder:text-sm focus:border-primary dark:bg-customWhite dark:text-customBlack md:block"
       />
       {filteredProducts.map((venue: any) => (
         <div
