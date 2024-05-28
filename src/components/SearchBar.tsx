@@ -13,23 +13,25 @@ function SearchBar() {
   const [data, setData] = useState<Venue[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     async function getData() {
-      setIsLoading(true);
       try {
+        setIsLoading(true);
         let currentPage = 1;
         let isLastPage = false;
         const venues = [];
 
         while (!isLastPage) {
-          const response = await fetch(`${API_VENUES}?page=${currentPage}`);
+          const response = await fetch(
+            `${API_VENUES}/search?q=${searchTerm}&page=${currentPage}`,
+          );
           const result = await response.json();
           venues.push(...result.data);
           isLastPage = result.meta.isLastPage;
           currentPage++;
         }
-
         setData(venues);
       } catch (error) {
         setIsError(true);
@@ -38,17 +40,20 @@ function SearchBar() {
       }
     }
 
-    getData();
-  }, []);
+    if (searchTerm) {
+      getData();
+    }
+  }, [searchTerm]);
 
   const [filteredProducts, setFilteredProducts] = useState<Venue[]>([]);
 
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const searchTerm = event.target.value;
+    const term = event.target.value;
+    setSearchTerm(term);
 
-    if (searchTerm.length > 0) {
+    if (term.length > 0) {
       const filteredData = data.filter((venue: { name: string }) => {
-        return venue?.name.toLowerCase().includes(searchTerm.toLowerCase());
+        return venue?.name.toLowerCase().includes(term.toLowerCase());
       });
       setFilteredProducts(filteredData);
     } else {
@@ -80,7 +85,7 @@ function SearchBar() {
             onClick={handleLinkClick}
             className="text-base text-background hover:text-secondary dark:text-darkText"
           >
-            <div className="h- flex flex-row items-center justify-start gap-4">
+            <div className="flex h-96 flex-row items-center justify-start gap-4">
               <Image
                 src={venue?.media[0]?.url}
                 alt={venue?.name}

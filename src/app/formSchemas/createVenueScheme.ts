@@ -8,11 +8,13 @@ export const createVenueSchema = z.object({
     message: "Description must be at least 2 characters.",
   }),
   media: z
-    .string()
-    .url()
-    .min(2, {
-      message: "Media must be a valid URL.",
-    })
+    .array(
+      z.object({
+        url: z.string().url({
+          message: "Invalid URL.",
+        }),
+      }),
+    )
     .optional(),
   price: z.string().min(1, {
     message: "Price must be at least 1.",

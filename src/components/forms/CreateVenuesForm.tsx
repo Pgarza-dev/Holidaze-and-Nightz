@@ -2,7 +2,7 @@
 import React, { useEffect } from "react";
 import { API_VENUES } from "@/shared/ApiEndPoints";
 import { createVenueSchema } from "@/app/formSchemas/createVenueScheme";
-import { useForm } from "react-hook-form";
+import { useFieldArray, useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
@@ -21,6 +21,7 @@ import {
 } from "@/components/ui/form";
 import Container from "@/components/Container";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 type CreateVenueApi = {
   name: string;
@@ -48,13 +49,14 @@ type CreateVenueApi = {
 
 function CreateVenue({ accessToken }: { accessToken: string }) {
   const { toast } = useToast();
+  const router = useRouter();
 
   const form = useForm<z.infer<typeof createVenueSchema>>({
     resolver: zodResolver(createVenueSchema),
     defaultValues: {
       name: "",
       description: "",
-      media: "",
+      media: [{ url: "" }],
       price: "",
       maxGuests: "",
       rating: "",
@@ -96,6 +98,8 @@ function CreateVenue({ accessToken }: { accessToken: string }) {
             </ToastAction>
           ),
         });
+        router.push(`/profile`);
+        router.refresh();
       }
     } catch (error) {
       toast({
@@ -112,7 +116,7 @@ function CreateVenue({ accessToken }: { accessToken: string }) {
   }
 
   function onSubmit(values: z.infer<typeof createVenueSchema>) {
-    const formData = {
+    const formData: CreateVenueApi = {
       name: values.name,
       description: values.description,
       meta: {
@@ -125,17 +129,26 @@ function CreateVenue({ accessToken }: { accessToken: string }) {
         address: values.address,
         zip: values.zip,
         city: values.city,
+        country: values.country,
         continent: values.continent,
+        lat: values.lat ? parseFloat(values.lat) : undefined,
+        lng: values.lng ? parseFloat(values.lng) : undefined,
       },
-      media: values.media ? [{ url: values.media, alt: values.name }] : [],
-      price: Number(values.price),
-      maxGuests: Number(values.maxGuests),
-      rating: Number(values.rating),
+      media: values.media
+        ? values.media.map((image) => ({ url: image.url, alt: values.name }))
+        : [],
+      price: parseFloat(values.price),
+      maxGuests: parseInt(values.maxGuests, 10),
+      rating: values.rating ? parseFloat(values.rating) : undefined,
     };
+
     handleCreateVenue(formData);
   }
 
-  useEffect(() => {}, [form.formState.errors]);
+  const { fields, append, remove } = useFieldArray({
+    control: form.control,
+    name: "media",
+  });
 
   function ClearForm() {
     form.reset();
@@ -224,27 +237,45 @@ function CreateVenue({ accessToken }: { accessToken: string }) {
                 </FormItem>
               )}
             />
-            <FormField
-              control={form.control}
-              name="media"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel htmlFor="media">Media</FormLabel>
-                  <FormDescription className="text-customWhite">
-                    Please enter a URL for the venue image
-                  </FormDescription>
-                  <FormControl>
-                    <Input
-                      type="url"
-                      placeholder="https//example.com/image.jpg"
-                      {...field}
-                      id="media"
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+            {fields.map((field, index) => (
+              <FormField
+                key={field.id}
+                control={form.control}
+                name={`media.${index}`}
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel htmlFor={`media.${index}`}>
+                      Media {index + 1}
+                    </FormLabel>
+                    <FormDescription className="text-customWhite">
+                      Please enter a URL for the venue image
+                    </FormDescription>
+                    <FormControl>
+                      <Input
+                        type="url"
+                        placeholder="https//example.com/image.jpg"
+                        {...field}
+                        value={field.value?.url || ""}
+                        defaultValue={field.value?.url || ""}
+                        onChange={(e) => {
+                          field.onChange({
+                            url: e.target.value,
+                          });
+                        }}
+                        id={`media.${index}`}
+                      />
+                    </FormControl>
+                    <button type="button" onClick={() => remove(index)}>
+                      Remove
+                    </button>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            ))}
+            <button type="button" onClick={() => append({ url: "" })}>
+              Add Media
+            </button>
             <FormField
               control={form.control}
               name="price"

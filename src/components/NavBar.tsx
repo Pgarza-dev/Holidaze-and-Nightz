@@ -1,23 +1,45 @@
 "use client";
-import React, { useState, useEffect, use } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { ThemeToggle } from "./ThemeToggle";
 import { IoIosSearch } from "react-icons/io";
 import Container from "@/components/Container";
 import SearchBar from "@/components/SearchBar";
+
 function NavBar() {
   const [isClicked, setisClicked] = useState(false);
+  const menuNav = useRef(null);
 
   const toggleNavbar = () => {
-    setisClicked(!isClicked);
+    setisClicked((prevIsClicked) => !prevIsClicked);
+    const menu = menuNav.current as HTMLElement | null;
+    if (menu) {
+      menu.style.display = isClicked ? "none" : "block";
+    }
   };
+
+  const handleClickOutside = (event: MouseEvent) => {
+    if (
+      menuNav.current &&
+      !(menuNav.current as HTMLElement).contains(event.target as Node)
+    ) {
+      setisClicked(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   return (
     <div className="relative w-full bg-customBlack">
       <Container className="relative z-10 w-full font-libre ">
         <header>
           <nav className="relative flex flex-row items-center justify-between">
-            <div className="flex flex-col gap-4">
+            <div ref={menuNav} className="flex flex-col gap-4">
               <button
                 className="text-base text-background hover:text-secondary dark:text-darkText md:text-3xl"
                 onClick={toggleNavbar}
