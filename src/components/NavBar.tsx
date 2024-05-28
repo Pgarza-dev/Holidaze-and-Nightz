@@ -17,23 +17,29 @@ function NavBar() {
     <div className="relative w-full bg-customBlack">
       <Container className="relative z-10 w-full font-libre ">
         <header>
-          <nav className="relative flex flex-row items-center justify-between">
-            <div className="flex flex-col gap-4">
-              <button
-                className="text-base text-background hover:text-secondary dark:text-darkText md:text-3xl"
-                onClick={toggleNavbar}
-              >
-                Menu
-              </button>
-            </div>
-            <div className="relative top-0 flex items-center justify-center">
-              <SearchBar />
+          <nav className="relative flex flex-col items-center justify-evenly md:flex-row">
+            <div className="relative top-0 flex flex-col items-center justify-between md:flex-row gap-4 w-full">
+              <div className="flex w-full flex-row items-center justify-between gap-4 py-2">
+                <button
+                  className="text-base text-background hover:text-secondary dark:text-darkText md:text-3xl"
+                  onClick={toggleNavbar}
+                >
+                  Menu
+                </button>
+                <div className="not-sr-only sm:sr-only">
+                  <ThemeToggle />
+                </div>
+              </div>
+
+              <div>
+                <SearchBar />
+              </div>
+              <div className="sr-only md:not-sr-only">
+                  <ThemeToggle />
+                </div>
             </div>
 
-            <div className="flex items-center justify-center gap-4 text-base md:text-3xl">
-              <IoIosSearch className="text-background dark:text-customWhite" />
-              <ThemeToggle />
-            </div>
+            <div className="flex items-center justify-center gap-4 text-base md:text-3xl"></div>
           </nav>
         </header>
       </Container>
