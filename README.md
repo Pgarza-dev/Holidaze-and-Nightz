@@ -1,43 +1,49 @@
-# Holidaz & Nightz: A Next.js project exam for Noroff.
+# Holidaz & Nightz: A Next.js Project Exam for Noroff
 
-## Description
+## Overview
 
-This is a project exam for the course "Next.js" at Noroff. The task was to create a website that displays a list of Venues. The website is built with Next.js, Typescript, React, Tailwind, Zod and uses the Noroff API from https://docs.noroff.dev/docs/v2. The website should have a homepage that displays a list of holidays and nights. The user should be able to click on a holiday or night to view more details about it. The website should also have a search functionality that allows the user to search for a holiday or night. The user can register as a new user and log in to the website. The user can also log out. The website should have a responsive design.
+This project is an examination for the "Next.js" course at Noroff. The objective was to develop a website that showcases a list of venues. Built using Next.js, TypeScript, React, TailwindCSS, and Zod, the website utilizes the Noroff API (https://docs.noroff.dev/docs/v2). It features a homepage displaying holidays and nights, with detailed views available for each. The website includes search functionality, user registration, login, and logout features, and is designed to be fully responsive.
 
-## Tech Stack
+## Technology Stack
 
-- [Next.js](https://nextjs.org/): Next.js is a React framework that enables functionality such as server-side rendering and generating static websites for React based web applications.
-- [TypeScript](https://www.typescriptlang.org/): TypeScript is a typed superset of JavaScript that compiles to plain JavaScript.
+- [Next.js](https://nextjs.org/): A React framework that supports server-side rendering and static site generation.
+- [TypeScript](https://www.typescriptlang.org/): A typed superset of JavaScript that compiles to plain JavaScript.
 - [React](https://reactjs.org/): A JavaScript library for building user interfaces.
-- [Shadcn](https://shadcn.com/): A collection of beautiful and customizable CSS styling.
+- [Shadcn](https://shadcn.com/): A collection of customizable CSS styles.
 - [Zod](https://zod.dev/): A TypeScript-first schema declaration and validation library.
-- [TailwindCSS](https://tailwindcss.com/): A utility-first CSS framework for rapidly building custom user interfaces.
-- [Vercel](https://vercel.com/): A cloud platform for static sites and Serverless Functions that fits perfectly with your workflow.
+- [TailwindCSS](https://tailwindcss.com/): A utility-first CSS framework for quickly building custom user interfaces.
+- [Vercel](https://vercel.com/): A cloud platform for static sites and serverless functions, integrated with your workflow.
+- [Noroff API](https://docs.noroff.dev/docs/v2): An API provided by Noroff for the project.
+- [Node.js](https://nodejs.org/en/): A JavaScript runtime built on Chrome's V8 engine.
+- [GitHub](https://github.com/): A code hosting platform for version control and collaboration.
 
-## Created by
+## Author
 
 - [Pgarza-dev](https://github.com/Pgarza-dev)
 
 ## Dependencies
 
-- [Node.js](https://nodejs.org/en/): JavaScript runtime built on Chrome's V8 JavaScript engine.
-- [TailwindCSS](https://tailwindcss.com/): A utility-first CSS framework for rapidly building custom user interfaces.
-- [Zod](https://zod.dev/): A TypeScript-first schema declaration and validation library.
-- [Shadcn](https://shadcn.com/): A collection of beautiful and customizable CSS styling.
-- [TypeScript](https://www.typescriptlang.org/): TypeScript is a typed superset of JavaScript that compiles to plain JavaScript.
+- [Node.js](https://nodejs.org/en/): JavaScript runtime built on Chrome's V8 engine.
+- [TailwindCSS](https://tailwindcss.com/): Utility-first CSS framework for building custom UIs.
+- [Zod](https://zod.dev/): TypeScript-first schema declaration and validation library.
+- [Shadcn](https://shadcn.com/): Customizable CSS styles.
+- [TypeScript](https://www.typescriptlang.org/): Typed superset of JavaScript.
 
 ## Getting Started
 
-1. Clone the repository `git clone https://github.com/Pgarza-dev/Holidaze-and-Nightz.git`
-2. Navigate to the project folder `cd Holidaze-and-Nightz`
-3. Install the dependencies `npm install`
-4. Run the development server `npm run dev`
-   Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+1. Clone the repository: `git clone https://github.com/Pgarza-dev/Holidaze-and-Nightz.git`
+2. Navigate to the project folder: `cd Holidaze-and-Nightz`
+3. Install the dependencies: `npm install`
+4. Run the development server: `npm run dev`
+   - Open [http://localhost:3000](http://localhost:3000) in your browser to view the website.
 
 ## Deployment
 
-The project is deployed on Vercel and can be accessed [Vercel](https://holidaze-and-nightz.vercel.app/).
+The project is deployed on Vercel and can be accessed [here](https://holidaze-and-nightz.vercel.app/).
 
+## Acknowledgements
 
-## Acknoldgements
-- [Noroff](https://www.noroff.no/): For providing the assignment, [Shadcn](https://shadcn.com/) for the beautiful CSS styling, [Zod](https://zod.dev/) for the schema declaration and validation library, and [Vercel](https://vercel.com/) for the deployment platform.
+- [Noroff](https://www.noroff.no/): For providing the assignment.
+- [Shadcn](https://shadcn.com/): For the beautiful CSS styling.
+- [Zod](https://zod.dev/): For the schema declaration and validation library.
+- [Vercel](https://vercel.com/): For the deployment platform.
