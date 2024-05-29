@@ -51,11 +51,12 @@ function Register() {
           title: "Account Created",
           description: "You have successfully created an account",
           duration: 3000,
-          variant: "default",
+          variant: "success",
           action: (
             <ToastAction altText="Register successful">Close</ToastAction>
           ),
         });
+        router.push("/login");
       }
     } catch (error) {
       console.error("Error:", error);

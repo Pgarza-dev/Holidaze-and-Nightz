@@ -110,6 +110,15 @@ export default function LoginForm() {
             </Button>
           </Link>
         </div>
+        <div className="tex-sm flex w-full flex-row justify-center gap-4 ">
+          <span className="flex flex-row gap-2">
+            User Testing:{" "}
+            <span className="underline"> FutureEmployer@stud.noroff.no</span>
+          </span>
+          <span className="flex flex-row gap-2">
+            Test Password: <span className="underline"> FutureEmployer</span>
+          </span>
+        </div>
       </div>
     </Container>
   );
